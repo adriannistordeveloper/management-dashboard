@@ -14,7 +14,7 @@ export const introBlockStyle: CSSProperties = {
 
 export const titleStyle: CSSProperties = {
   margin: 0,
-  fontSize: '34px',
+  fontSize: 'clamp(28px, 4vw, 34px)',
   lineHeight: 1.1,
 }
 

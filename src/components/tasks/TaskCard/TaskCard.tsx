@@ -1,4 +1,6 @@
 import type { Task } from '../../../types/task.types'
+import { formatDate } from '../../../lib/formatDate'
+import { formatTaskStatus } from '../../../lib/formatTaskStatus'
 import {
   cardBaseStyle,
   cardSelectedStyle,
@@ -24,8 +26,8 @@ export function TaskCard({ isSelected, onSelect, task }: TaskCardProps) {
       type="button"
     >
       <div style={topRowStyle}>
-        <span style={getStatusBadgeStyle(task.status)}>{task.status}</span>
-        <span style={dateStyle}>{task.dueDate}</span>
+        <span style={getStatusBadgeStyle(task.status)}>{formatTaskStatus(task.status)}</span>
+        <span style={dateStyle}>{formatDate(task.dueDate)}</span>
       </div>
       <h3 style={titleStyle}>{task.title}</h3>
       <p style={descriptionStyle}>{task.description}</p>

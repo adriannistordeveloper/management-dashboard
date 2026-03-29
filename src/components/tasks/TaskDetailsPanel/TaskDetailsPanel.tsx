@@ -1,6 +1,10 @@
 import type { Task } from '../../../types/task.types'
+import { formatDate } from '../../../lib/formatDate'
+import { formatTaskStatus } from '../../../lib/formatTaskStatus'
 import { useVisibleTasks } from '../../../hooks/useVisibleTasks'
+import { useSelectedTask } from '../../../hooks/useSelectedTask'
 import { useTasksStore } from '../../../store/useTasksStore'
+import { HiddenSelectionState } from '../HiddenSelectionState/HiddenSelectionState'
 import { NoSelectionState } from '../NoSelectionState/NoSelectionState'
 import {
   actionsStyle,
@@ -27,9 +31,9 @@ interface TaskDetailsPanelProps {
 
 export function TaskDetailsPanel({ onDeleteTask, onEditTask }: TaskDetailsPanelProps) {
   const visibleTasks = useVisibleTasks()
-  const selectedTaskId = useTasksStore((state) => state.selectedTaskId)
-
-  const selectedTask = visibleTasks.find((task) => task.id === selectedTaskId)
+  const resetFilters = useTasksStore((state) => state.resetFilters)
+  const selectedTask = useSelectedTask()
+  const visibleSelectedTask = visibleTasks.find((task) => task.id === selectedTask?.id)
 
   if (!selectedTask) {
     return (
@@ -38,6 +42,17 @@ export function TaskDetailsPanel({ onDeleteTask, onEditTask }: TaskDetailsPanelP
           <h2 style={headingStyle}>Details</h2>
         </div>
         <NoSelectionState />
+      </section>
+    )
+  }
+
+  if (!visibleSelectedTask) {
+    return (
+      <section style={panelStyle}>
+        <div style={headerStyle}>
+          <h2 style={headingStyle}>Details</h2>
+        </div>
+        <HiddenSelectionState onResetFilters={resetFilters} />
       </section>
     )
   }
@@ -57,7 +72,9 @@ export function TaskDetailsPanel({ onDeleteTask, onEditTask }: TaskDetailsPanelP
         <div style={gridStyle}>
           <div style={metaItemStyle}>
             <span style={labelStyle}>Status</span>
-            <strong style={getStatusBadgeStyle(selectedTask.status)}>{selectedTask.status}</strong>
+            <strong style={getStatusBadgeStyle(selectedTask.status)}>
+              {formatTaskStatus(selectedTask.status)}
+            </strong>
           </div>
           <div style={metaItemStyle}>
             <span style={labelStyle}>Owner</span>
@@ -65,11 +82,11 @@ export function TaskDetailsPanel({ onDeleteTask, onEditTask }: TaskDetailsPanelP
           </div>
           <div style={metaItemStyle}>
             <span style={labelStyle}>Due date</span>
-            <strong>{selectedTask.dueDate}</strong>
+            <strong>{formatDate(selectedTask.dueDate)}</strong>
           </div>
           <div style={metaItemStyle}>
             <span style={labelStyle}>Created at</span>
-            <strong>{selectedTask.createdAt}</strong>
+            <strong>{formatDate(selectedTask.createdAt)}</strong>
           </div>
         </div>
 

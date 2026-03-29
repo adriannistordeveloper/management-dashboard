@@ -48,6 +48,7 @@ export const metaStyle: CSSProperties = {
 export const dateStyle: CSSProperties = {
   fontSize: '13px',
   color: '#5c6b84',
+  whiteSpace: 'nowrap',
 }
 
 const statusStyles: Record<TaskStatus, CSSProperties> = {
