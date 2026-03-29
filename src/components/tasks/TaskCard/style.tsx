@@ -4,7 +4,9 @@ import type { TaskStatus } from '../../../types/task.types'
 
 export const cardBaseStyle: CSSProperties = {
   width: '100%',
-  border: '1px solid #dce4ef',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#dce4ef',
   borderRadius: '16px',
   background: '#fcfdff',
   padding: '18px',

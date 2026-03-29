@@ -19,7 +19,9 @@ export const copyStyle: CSSProperties = {
 }
 
 export const buttonStyle: CSSProperties = {
-  border: '1px solid #c8d5eb',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#c8d5eb',
   borderRadius: '12px',
   background: '#ffffff',
   color: '#14213d',
