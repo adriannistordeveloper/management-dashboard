@@ -43,7 +43,7 @@ export const titleStyle: CSSProperties = {
 
 export const gridStyle: CSSProperties = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))',
   gap: '16px',
 }
 

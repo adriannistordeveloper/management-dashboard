@@ -5,13 +5,12 @@ import {
   actionsRowStyle,
   controlsCardStyle,
   controlsGridStyle,
-  eyebrowStyle,
   fieldGroupStyle,
   fieldLabelStyle,
   inputStyle,
   introBlockStyle,
-  noteStyle,
   resetButtonStyle,
+  searchFieldGroupStyle,
   summaryStyle,
   titleStyle,
   toolbarStyle,
@@ -31,16 +30,12 @@ export function TasksToolbar() {
   return (
     <header style={toolbarStyle}>
       <div style={introBlockStyle}>
-        <p style={eyebrowStyle}>Task Management Dashboard</p>
-        <h1 style={titleStyle}>Execution overview</h1>
-        <p style={noteStyle}>
-          Track delivery work, monitor ownership, and review the current status of active tasks.
-        </p>
+        <h1 style={titleStyle}>Task Management Dashboard</h1>
       </div>
 
       <div style={controlsCardStyle}>
         <div style={controlsGridStyle}>
-          <label style={fieldGroupStyle}>
+          <label style={searchFieldGroupStyle}>
             <span style={fieldLabelStyle}>Search</span>
             <input
               onChange={(event) => setFilters({ search: event.target.value })}

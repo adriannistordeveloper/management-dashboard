@@ -2,24 +2,14 @@ import type { CSSProperties } from 'react'
 
 export const toolbarStyle: CSSProperties = {
   display: 'flex',
+  flexDirection: 'column',
   gap: '24px',
   alignItems: 'stretch',
-  flexWrap: 'wrap',
   marginBottom: '24px',
 }
 
 export const introBlockStyle: CSSProperties = {
-  minWidth: '260px',
-  flex: '1 1 320px',
-}
-
-export const eyebrowStyle: CSSProperties = {
-  margin: '0 0 8px',
-  fontSize: '12px',
-  lineHeight: 1.2,
-  letterSpacing: '0.12em',
-  textTransform: 'uppercase',
-  color: '#5c6b84',
+  width: '100%',
 }
 
 export const titleStyle: CSSProperties = {
@@ -28,17 +18,10 @@ export const titleStyle: CSSProperties = {
   lineHeight: 1.1,
 }
 
-export const noteStyle: CSSProperties = {
-  maxWidth: '420px',
-  margin: 0,
-  color: '#4c5a73',
-}
-
 export const controlsCardStyle: CSSProperties = {
   display: 'grid',
   gap: '14px',
-  minWidth: '320px',
-  flex: '1 1 420px',
+  width: '100%',
   padding: '18px',
   borderRadius: '18px',
   background: '#ffffff',
@@ -48,13 +31,19 @@ export const controlsCardStyle: CSSProperties = {
 
 export const controlsGridStyle: CSSProperties = {
   display: 'grid',
-  gridTemplateColumns: 'minmax(0, 1.8fr) repeat(3, minmax(140px, 1fr))',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))',
   gap: '12px',
 }
 
 export const fieldGroupStyle: CSSProperties = {
   display: 'grid',
   gap: '6px',
+}
+
+export const searchFieldGroupStyle: CSSProperties = {
+  display: 'grid',
+  gap: '6px',
+  gridColumn: '1 / -1',
 }
 
 export const fieldLabelStyle: CSSProperties = {
