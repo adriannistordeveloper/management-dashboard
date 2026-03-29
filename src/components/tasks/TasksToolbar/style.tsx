@@ -22,6 +22,7 @@ export const controlsCardStyle: CSSProperties = {
   display: 'grid',
   gap: '14px',
   width: '100%',
+  boxSizing: 'border-box',
   padding: '18px',
   borderRadius: '18px',
   background: '#ffffff',
