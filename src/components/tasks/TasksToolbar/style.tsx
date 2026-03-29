@@ -81,6 +81,12 @@ export const actionsRowStyle: CSSProperties = {
   flexWrap: 'wrap',
 }
 
+export const toolbarActionsStyle: CSSProperties = {
+  display: 'flex',
+  gap: '12px',
+  flexWrap: 'wrap',
+}
+
 export const summaryStyle: CSSProperties = {
   margin: 0,
   color: '#4c5a73',
@@ -97,5 +103,18 @@ export const resetButtonStyle: CSSProperties = {
   padding: '10px 14px',
   font: 'inherit',
   fontWeight: 600,
+  cursor: 'pointer',
+}
+
+export const primaryButtonStyle: CSSProperties = {
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#3151a6',
+  borderRadius: '12px',
+  background: '#3151a6',
+  color: '#ffffff',
+  padding: '10px 14px',
+  font: 'inherit',
+  fontWeight: 700,
   cursor: 'pointer',
 }

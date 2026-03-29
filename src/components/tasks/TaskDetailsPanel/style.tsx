@@ -28,6 +28,12 @@ export const stackStyle: CSSProperties = {
   gap: '24px',
 }
 
+export const actionsStyle: CSSProperties = {
+  display: 'flex',
+  gap: '12px',
+  flexWrap: 'wrap',
+}
+
 export const eyebrowStyle: CSSProperties = {
   margin: '0 0 8px',
   fontSize: '12px',
@@ -65,6 +71,32 @@ export const descriptionBlockStyle: CSSProperties = {
 export const descriptionStyle: CSSProperties = {
   margin: 0,
   color: '#4c5a73',
+}
+
+export const secondaryButtonStyle: CSSProperties = {
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#c8d5eb',
+  borderRadius: '12px',
+  background: '#ffffff',
+  color: '#14213d',
+  padding: '10px 14px',
+  font: 'inherit',
+  fontWeight: 600,
+  cursor: 'pointer',
+}
+
+export const dangerButtonStyle: CSSProperties = {
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#d92d20',
+  borderRadius: '12px',
+  background: '#ffffff',
+  color: '#b42318',
+  padding: '10px 14px',
+  font: 'inherit',
+  fontWeight: 600,
+  cursor: 'pointer',
 }
 
 const statusStyles: Record<TaskStatus, CSSProperties> = {

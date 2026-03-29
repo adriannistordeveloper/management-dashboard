@@ -1,7 +1,10 @@
+import type { Task } from '../../../types/task.types'
 import { useVisibleTasks } from '../../../hooks/useVisibleTasks'
 import { useTasksStore } from '../../../store/useTasksStore'
 import { NoSelectionState } from '../NoSelectionState/NoSelectionState'
 import {
+  actionsStyle,
+  dangerButtonStyle,
   descriptionBlockStyle,
   descriptionStyle,
   eyebrowStyle,
@@ -12,11 +15,17 @@ import {
   labelStyle,
   metaItemStyle,
   panelStyle,
+  secondaryButtonStyle,
   stackStyle,
   titleStyle,
 } from './style'
 
-export function TaskDetailsPanel() {
+interface TaskDetailsPanelProps {
+  onDeleteTask: (task: Task) => void
+  onEditTask: (task: Task) => void
+}
+
+export function TaskDetailsPanel({ onDeleteTask, onEditTask }: TaskDetailsPanelProps) {
   const visibleTasks = useVisibleTasks()
   const selectedTaskId = useTasksStore((state) => state.selectedTaskId)
 
@@ -67,6 +76,23 @@ export function TaskDetailsPanel() {
         <div style={descriptionBlockStyle}>
           <span style={labelStyle}>Description</span>
           <p style={descriptionStyle}>{selectedTask.description}</p>
+        </div>
+
+        <div style={actionsStyle}>
+          <button
+            onClick={() => onEditTask(selectedTask)}
+            style={secondaryButtonStyle}
+            type="button"
+          >
+            Edit task
+          </button>
+          <button
+            onClick={() => onDeleteTask(selectedTask)}
+            style={dangerButtonStyle}
+            type="button"
+          >
+            Delete task
+          </button>
         </div>
       </div>
     </section>

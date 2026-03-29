@@ -13,6 +13,14 @@ export interface Task {
   createdAt: string
 }
 
+export interface TaskFormValues {
+  title: string
+  description: string
+  status: TaskStatus
+  owner: string
+  dueDate: string
+}
+
 export interface TaskFilters {
   search: string
   status: TaskStatus | 'all'

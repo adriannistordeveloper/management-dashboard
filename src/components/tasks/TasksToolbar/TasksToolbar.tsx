@@ -9,15 +9,21 @@ import {
   fieldLabelStyle,
   inputStyle,
   introBlockStyle,
+  primaryButtonStyle,
   resetButtonStyle,
   searchFieldGroupStyle,
   sortFieldGroupStyle,
   summaryStyle,
   titleStyle,
+  toolbarActionsStyle,
   toolbarStyle,
 } from './style'
 
-export function TasksToolbar() {
+interface TasksToolbarProps {
+  onCreateTask: () => void
+}
+
+export function TasksToolbar({ onCreateTask }: TasksToolbarProps) {
   const tasks = useTasksStore((state) => state.tasks)
   const filters = useTasksStore((state) => state.filters)
   const sort = useTasksStore((state) => state.sort)
@@ -106,9 +112,14 @@ export function TasksToolbar() {
           <p style={summaryStyle}>
             Showing {visibleTasks.length} of {tasks.length} tasks
           </p>
-          <button onClick={() => resetFilters()} style={resetButtonStyle} type="button">
-            Reset filters
-          </button>
+          <div style={toolbarActionsStyle}>
+            <button onClick={onCreateTask} style={primaryButtonStyle} type="button">
+              Add task
+            </button>
+            <button onClick={() => resetFilters()} style={resetButtonStyle} type="button">
+              Reset filters
+            </button>
+          </div>
         </div>
       </div>
     </header>
