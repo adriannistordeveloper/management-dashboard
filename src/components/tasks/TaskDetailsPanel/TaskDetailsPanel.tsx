@@ -1,3 +1,4 @@
+import { useVisibleTasks } from '../../../hooks/useVisibleTasks'
 import { useTasksStore } from '../../../store/useTasksStore'
 import { NoSelectionState } from '../NoSelectionState/NoSelectionState'
 import {
@@ -16,10 +17,10 @@ import {
 } from './style'
 
 export function TaskDetailsPanel() {
-  const tasks = useTasksStore((state) => state.tasks)
+  const visibleTasks = useVisibleTasks()
   const selectedTaskId = useTasksStore((state) => state.selectedTaskId)
 
-  const selectedTask = tasks.find((task) => task.id === selectedTaskId)
+  const selectedTask = visibleTasks.find((task) => task.id === selectedTaskId)
 
   if (!selectedTask) {
     return (
