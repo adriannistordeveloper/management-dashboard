@@ -11,6 +11,7 @@ import {
   introBlockStyle,
   resetButtonStyle,
   searchFieldGroupStyle,
+  sortFieldGroupStyle,
   summaryStyle,
   titleStyle,
   toolbarStyle,
@@ -77,7 +78,7 @@ export function TasksToolbar() {
             </select>
           </label>
 
-          <label style={fieldGroupStyle}>
+          <label style={sortFieldGroupStyle}>
             <span style={fieldLabelStyle}>Sort</span>
             <select
               onChange={(event) => {

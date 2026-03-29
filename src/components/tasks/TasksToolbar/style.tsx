@@ -47,6 +47,12 @@ export const searchFieldGroupStyle: CSSProperties = {
   gridColumn: '1 / -1',
 }
 
+export const sortFieldGroupStyle: CSSProperties = {
+  display: 'grid',
+  gap: '6px',
+  minWidth: '220px',
+}
+
 export const fieldLabelStyle: CSSProperties = {
   fontSize: '13px',
   fontWeight: 600,
