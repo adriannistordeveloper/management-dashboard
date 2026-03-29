@@ -1,11 +1,7 @@
-import './App.css'
+import { TasksDashboard } from './components/tasks/TasksDashboard'
 
 function App() {
-  return (
-    <main className="app">
-      <div className="app-shell" />
-    </main>
-  )
+  return <TasksDashboard />
 }
 
 export default App
