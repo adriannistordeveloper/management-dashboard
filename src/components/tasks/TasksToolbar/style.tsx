@@ -20,6 +20,7 @@ export const titleStyle: CSSProperties = {
   margin: 0,
   fontSize: 'clamp(28px, 4vw, 34px)',
   lineHeight: 1.1,
+  color: '#3151a6',
 }
 
 export const controlsCardStyle: CSSProperties = {
