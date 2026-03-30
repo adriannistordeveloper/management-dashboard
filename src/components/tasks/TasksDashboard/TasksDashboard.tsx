@@ -22,14 +22,23 @@ export function TasksDashboard() {
   const createTask = useTasksStore((state) => state.createTask)
   const updateTask = useTasksStore((state) => state.updateTask)
   const deleteTask = useTasksStore((state) => state.deleteTask)
+  const hasHydrated = useTasksStore((state) => state.hasHydrated)
+  const hasInitializedData = useTasksStore((state) => state.hasInitializedData)
+  const tasks = useTasksStore((state) => state.tasks)
   const isLoading = useTasksStore((state) => state.isLoading)
   const error = useTasksStore((state) => state.error)
   const selectedTask = useSelectedTask()
   const [modalMode, setModalMode] = useState<'create' | 'edit' | null>(null)
 
   useEffect(() => {
-    void fetchTasks()
-  }, [fetchTasks])
+    if (!hasHydrated) {
+      return
+    }
+
+    if (!hasInitializedData || tasks.length === 0) {
+      void fetchTasks()
+    }
+  }, [fetchTasks, hasHydrated, hasInitializedData, tasks.length])
 
   const defaultFormValues = useMemo<TaskFormValues>(
     () => ({

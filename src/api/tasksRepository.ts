@@ -18,12 +18,21 @@ export const tasksRepository = {
     return [...tasksDb]
   },
 
+  replaceTasks(tasks: Task[]) {
+    tasksDb = [...tasks]
+  },
+
+  resetToMockTasks() {
+    tasksDb = [...mockTasks]
+  },
+
   async createTask(values: TaskFormValues): Promise<Task> {
     await wait(REPOSITORY_DELAY_MS)
 
     const task: Task = {
       id: createTaskId(),
       createdAt: new Date().toISOString().slice(0, 10),
+      isMock: false,
       ...values,
     }
 

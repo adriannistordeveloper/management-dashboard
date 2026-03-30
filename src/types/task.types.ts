@@ -11,6 +11,7 @@ export interface Task {
   owner: string
   dueDate: string
   createdAt: string
+  isMock?: boolean
 }
 
 export interface TaskFormValues {

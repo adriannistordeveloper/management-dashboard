@@ -10,6 +10,10 @@ export const toolbarStyle: CSSProperties = {
 
 export const introBlockStyle: CSSProperties = {
   width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  gap: '12px',
+  flexWrap: 'wrap',
 }
 
 export const titleStyle: CSSProperties = {

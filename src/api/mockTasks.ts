@@ -10,6 +10,7 @@ export const mockTasks: Task[] = [
     owner: 'Adrian Nistor',
     dueDate: '2026-04-02',
     createdAt: '2026-03-24',
+    isMock: true,
   },
   {
     id: 'task-002',
@@ -20,6 +21,7 @@ export const mockTasks: Task[] = [
     owner: 'Ioana Popescu',
     dueDate: '2026-04-05',
     createdAt: '2026-03-26',
+    isMock: true,
   },
   {
     id: 'task-003',
@@ -30,15 +32,6 @@ export const mockTasks: Task[] = [
     owner: 'Mihai Georgescu',
     dueDate: '2026-03-28',
     createdAt: '2026-03-20',
-  },
-  {
-    id: 'task-004',
-    title: 'Draft CRUD interaction states',
-    description:
-      'Document create, edit, delete, loading, error, and empty states so the implementation has a consistent UX reference.',
-    status: 'todo',
-    owner: 'Adrian Nistor',
-    dueDate: '2026-04-07',
-    createdAt: '2026-03-27',
+    isMock: true,
   },
 ]

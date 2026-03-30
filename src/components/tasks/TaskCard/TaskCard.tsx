@@ -8,7 +8,9 @@ import {
   descriptionStyle,
   getStatusBadgeStyle,
   metaStyle,
+  sourceBadgeStyle,
   titleStyle,
+  titleRowStyle,
   topRowStyle,
 } from './style'
 
@@ -29,7 +31,10 @@ export function TaskCard({ isSelected, onSelect, task }: TaskCardProps) {
         <span style={getStatusBadgeStyle(task.status)}>{formatTaskStatus(task.status)}</span>
         <span style={dateStyle}>{formatDate(task.dueDate)}</span>
       </div>
-      <h3 style={titleStyle}>{task.title}</h3>
+      <div style={titleRowStyle}>
+        <h3 style={titleStyle}>{task.title}</h3>
+        {task.isMock ? <span style={sourceBadgeStyle}>Mock</span> : null}
+      </div>
       <p style={descriptionStyle}>{task.description}</p>
       <div style={metaStyle}>
         <span>{task.owner}</span>
