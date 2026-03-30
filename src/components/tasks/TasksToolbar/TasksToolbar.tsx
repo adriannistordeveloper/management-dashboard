@@ -46,7 +46,7 @@ export function TasksToolbar({ onCreateTask }: TasksToolbarProps) {
             <span style={fieldLabelStyle}>Search</span>
             <input
               onChange={(event) => setFilters({ search: event.target.value })}
-              placeholder="Search title, status, date, or owner"
+              placeholder="Search title, status, date or owner"
               style={inputStyle}
               type="text"
               value={filters.search}
