@@ -1,5 +1,5 @@
 import { formatDate } from '../../../lib/formatDate'
-import type { Task } from '../../../types/task.types'
+import type { DeleteTaskConfirmationProps } from '../../../types/task-ui.types'
 import {
   actionsStyle,
   bodyTextStyle,
@@ -10,13 +10,6 @@ import {
   taskPreviewStyle,
   taskTitleStyle,
 } from './style'
-
-interface DeleteTaskConfirmationProps {
-  isDeleting: boolean
-  onCancel: () => void
-  onConfirm: () => Promise<void>
-  task: Task
-}
 
 export function DeleteTaskConfirmation({
   isDeleting,

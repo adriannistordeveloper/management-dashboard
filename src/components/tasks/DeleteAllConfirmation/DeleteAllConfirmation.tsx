@@ -1,11 +1,5 @@
+import type { DeleteAllConfirmationProps } from '../../../types/task-ui.types'
 import { actionsStyle, bodyTextStyle, contentStyle, dangerButtonStyle, secondaryButtonStyle } from './style'
-
-interface DeleteAllConfirmationProps {
-  count: number
-  isDeleting: boolean
-  onCancel: () => void
-  onConfirm: () => Promise<void>
-}
 
 export function DeleteAllConfirmation({
   count,

@@ -1,8 +1,5 @@
+import type { HiddenSelectionStateProps } from '../../../types/task-ui.types'
 import { buttonStyle, containerStyle, copyStyle, titleStyle } from './style'
-
-interface HiddenSelectionStateProps {
-  onResetFilters: () => void
-}
 
 export function HiddenSelectionState({ onResetFilters }: HiddenSelectionStateProps) {
   return (

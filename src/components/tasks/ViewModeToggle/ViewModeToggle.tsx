@@ -1,10 +1,5 @@
-import type { TasksViewMode } from '../../../types/task.types'
+import type { ViewModeToggleProps } from '../../../types/task-ui.types'
 import { containerStyle, getButtonStyle, groupStyle } from './style'
-
-interface ViewModeToggleProps {
-  onChange: (mode: TasksViewMode) => void
-  viewMode: TasksViewMode
-}
 
 export function ViewModeToggle({ onChange, viewMode }: ViewModeToggleProps) {
   return (

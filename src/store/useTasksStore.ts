@@ -2,33 +2,8 @@ import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
 import { tasksRepository } from '../api/tasksRepository'
-import type { Task, TaskFilters, TaskFormValues, TasksViewMode, TaskSort } from '../types/task.types'
-
-interface TasksState {
-  tasks: Task[]
-  selectedTaskId: string | null
-  filters: TaskFilters
-  sort: TaskSort
-  viewMode: TasksViewMode
-  hasHydrated: boolean
-  hasInitializedData: boolean
-  isLoading: boolean
-  error: string | null
-  fetchTasks: () => Promise<void>
-  selectTask: (taskId: string) => void
-  clearSelection: () => void
-  clearError: () => void
-  setFilters: (filters: Partial<TaskFilters>) => void
-  setSort: (sort: TaskSort) => void
-  setViewMode: (viewMode: TasksViewMode) => void
-  resetFilters: () => void
-  resetDashboardState: () => void
-  createTask: (values: TaskFormValues) => Promise<Task>
-  updateTask: (taskId: string, values: TaskFormValues) => Promise<Task>
-  deleteTask: (taskId: string) => Promise<void>
-  deleteAllTasks: () => Promise<void>
-  markHydrated: () => void
-}
+import type { TaskFilters, TaskSort } from '../types/task.types'
+import type { TasksStoreState } from '../types/task-ui.types'
 
 const initialFilters: TaskFilters = {
   search: '',
@@ -41,7 +16,7 @@ const initialSort: TaskSort = {
   direction: 'asc',
 }
 
-export const useTasksStore = create<TasksState>()(
+export const useTasksStore = create<TasksStoreState>()(
   persist(
     (set, get) => ({
       tasks: [],

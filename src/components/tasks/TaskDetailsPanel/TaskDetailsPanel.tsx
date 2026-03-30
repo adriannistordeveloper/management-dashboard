@@ -1,8 +1,8 @@
-import type { Task } from '../../../types/task.types'
 import { formatDate } from '../../../lib/formatDate'
 import { useVisibleTasks } from '../../../hooks/useVisibleTasks'
 import { useSelectedTask } from '../../../hooks/useSelectedTask'
 import { useTasksStore } from '../../../store/useTasksStore'
+import type { TaskDetailsPanelProps } from '../../../types/task-ui.types'
 import { HiddenSelectionState } from '../HiddenSelectionState/HiddenSelectionState'
 import { NoSelectionState } from '../NoSelectionState/NoSelectionState'
 import { StatusMenu } from '../StatusMenu/StatusMenu'
@@ -22,12 +22,6 @@ import {
   stackStyle,
   titleStyle,
 } from './style'
-
-interface TaskDetailsPanelProps {
-  onDeleteTask: (task: Task) => void
-  onEditTask: (task: Task) => void
-  onStatusChange: (task: Task) => (status: Task['status']) => void
-}
 
 export function TaskDetailsPanel({
   onDeleteTask,

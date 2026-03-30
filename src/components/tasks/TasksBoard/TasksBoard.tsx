@@ -2,7 +2,7 @@ import { formatTaskStatus } from '../../../lib/formatTaskStatus'
 import { groupTasksByStatus } from '../../../lib/groupTasksByStatus'
 import { useVisibleTasks } from '../../../hooks/useVisibleTasks'
 import { useTasksStore } from '../../../store/useTasksStore'
-import type { Task, TaskStatus } from '../../../types/task.types'
+import type { TasksBoardProps } from '../../../types/task-ui.types'
 import { EmptyResultsState } from '../EmptyResultsState/EmptyResultsState'
 import { TaskCard } from '../TaskCard/TaskCard'
 import {
@@ -18,11 +18,6 @@ import {
   titleStyle,
   columnTitleStyle,
 } from './style'
-
-interface TasksBoardProps {
-  onDeleteAllTasks: () => void
-  onStatusChange: (task: Task) => (status: TaskStatus) => void
-}
 
 export function TasksBoard({ onDeleteAllTasks, onStatusChange }: TasksBoardProps) {
   const tasks = useTasksStore((state) => state.tasks)

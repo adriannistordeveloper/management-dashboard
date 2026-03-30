@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import type { TaskFormValues, TaskStatus } from '../../../types/task.types'
+import type { TaskFormProps } from '../../../types/task-ui.types'
 import {
   actionsStyle,
   errorStyle,
@@ -13,13 +14,6 @@ import {
   secondaryButtonStyle,
   textareaStyle,
 } from './style'
-
-interface TaskFormProps {
-  initialValues: TaskFormValues
-  onCancel: () => void
-  onSubmit: (values: TaskFormValues) => Promise<void>
-  submitLabel: string
-}
 
 export function TaskForm({ initialValues, onCancel, onSubmit, submitLabel }: TaskFormProps) {
   const [values, setValues] = useState<TaskFormValues>(initialValues)

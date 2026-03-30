@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
-import type { ReactNode } from 'react'
 
+import type { TaskModalProps } from '../../../types/task-ui.types'
 import {
   closeButtonStyle,
   headerStyle,
@@ -9,13 +9,6 @@ import {
   subtitleStyle,
   titleStyle,
 } from './style'
-
-interface TaskModalProps {
-  children: ReactNode
-  onClose: () => void
-  subtitle: string
-  title: string
-}
 
 export function TaskModal({ children, onClose, subtitle, title }: TaskModalProps) {
   const modalRef = useRef<HTMLDivElement | null>(null)

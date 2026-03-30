@@ -4,6 +4,7 @@ import { formatTaskStatus } from '../../../lib/formatTaskStatus'
 import { groupTasksByStatus } from '../../../lib/groupTasksByStatus'
 import { useVisibleTasks } from '../../../hooks/useVisibleTasks'
 import type { TaskStatus } from '../../../types/task.types'
+import type { TasksListProps } from '../../../types/task-ui.types'
 import { useTasksStore } from '../../../store/useTasksStore'
 import { EmptyResultsState } from '../EmptyResultsState/EmptyResultsState'
 import { TaskCard } from '../TaskCard/TaskCard'
@@ -28,13 +29,6 @@ import {
   titleStyle,
   toggleAllButtonStyle,
 } from './style'
-
-interface TasksListProps {
-  onDeleteAllTasks: () => void
-  onStatusChange: (task: import('../../../types/task.types').Task) => (
-    status: import('../../../types/task.types').TaskStatus,
-  ) => void
-}
 
 const initialCollapsedSections: Record<TaskStatus, boolean> = {
   todo: false,

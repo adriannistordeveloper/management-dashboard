@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 
+import type { ToastViewportProps } from '../../../types/task-ui.types'
 import {
   destructiveToastStyle,
   errorToastStyle,
@@ -8,17 +9,6 @@ import {
   titleStyle,
   viewportStyle,
 } from './style'
-
-export interface ToastMessage {
-  id: number
-  title: string
-  message: string
-  tone: 'success' | 'error' | 'destructive'
-}
-
-interface ToastViewportProps {
-  toasts: ToastMessage[]
-}
 
 export function ToastViewport({ toasts }: ToastViewportProps) {
   return (
