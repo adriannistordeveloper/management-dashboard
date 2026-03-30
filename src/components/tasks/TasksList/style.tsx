@@ -53,6 +53,20 @@ export const deleteAllButtonStyle: CSSProperties = {
   cursor: 'pointer',
 }
 
+export const toggleAllButtonStyle: CSSProperties = {
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#c8d5eb',
+  borderRadius: '999px',
+  background: '#ffffff',
+  color: '#344054',
+  padding: '6px 12px',
+  font: 'inherit',
+  fontSize: '13px',
+  fontWeight: 700,
+  cursor: 'pointer',
+}
+
 export const listStyle: CSSProperties = {
   display: 'grid',
   gap: '16px',
@@ -74,6 +88,25 @@ export const statusHeaderStyle: CSSProperties = {
   gap: '12px',
 }
 
+export const statusHeaderButtonStyle: CSSProperties = {
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  gap: '12px',
+  padding: 0,
+  border: 'none',
+  background: 'transparent',
+  cursor: 'pointer',
+  textAlign: 'left',
+}
+
+export const statusHeaderMetaStyle: CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '10px',
+}
+
 export const statusTitleStyle: CSSProperties = {
   margin: 0,
   fontSize: '16px',
@@ -89,6 +122,27 @@ export const statusCountStyle: CSSProperties = {
   textAlign: 'center',
   fontSize: '12px',
   fontWeight: 700,
+}
+
+export const collapseIconStyle: CSSProperties = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '28px',
+  height: '28px',
+  borderRadius: '999px',
+  background: '#eef2f7',
+  color: '#4c5a73',
+  fontSize: '16px',
+  fontWeight: 700,
+  lineHeight: 1,
+  flexShrink: 0,
+}
+
+export const collapseIconSvgStyle: CSSProperties = {
+  width: '14px',
+  height: '14px',
+  display: 'block',
 }
 
 const statusSectionStyles: Record<TaskStatus, CSSProperties> = {
