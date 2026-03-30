@@ -90,7 +90,7 @@ export function TasksToolbar({ onCreateTask, onResetStorage }: TasksToolbarProps
           </label>
 
           <label style={sortFieldGroupStyle}>
-            <span style={fieldLabelStyle}>Sort</span>
+            <span style={fieldLabelStyle}>Sort tasks within sections</span>
             <select
               onChange={(event) => {
                 const [field, direction] = event.target.value.split(':') as [
