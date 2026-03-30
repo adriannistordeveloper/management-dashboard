@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import type { TaskStatus } from '../../../types/task.types'
 
 export const panelStyle: CSSProperties = {
   background: '#ffffff',
@@ -56,6 +57,59 @@ export const listStyle: CSSProperties = {
   display: 'grid',
   gap: '16px',
 }
+
+export const statusSectionStyle: CSSProperties = {
+  display: 'grid',
+  gap: '14px',
+  padding: '16px',
+  borderRadius: '18px',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+}
+
+export const statusHeaderStyle: CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  gap: '12px',
+}
+
+export const statusTitleStyle: CSSProperties = {
+  margin: 0,
+  fontSize: '16px',
+  color: '#1f2937',
+}
+
+export const statusCountStyle: CSSProperties = {
+  minWidth: '28px',
+  padding: '4px 8px',
+  borderRadius: '999px',
+  background: '#f1f5f9',
+  color: '#475467',
+  textAlign: 'center',
+  fontSize: '12px',
+  fontWeight: 700,
+}
+
+const statusSectionStyles: Record<TaskStatus, CSSProperties> = {
+  todo: {
+    background: '#fffaf0',
+    borderColor: '#f4d7a1',
+  },
+  in_progress: {
+    background: '#f5f9ff',
+    borderColor: '#c7dbff',
+  },
+  done: {
+    background: '#f3fcf6',
+    borderColor: '#b7e4c7',
+  },
+}
+
+export const getStatusSectionStyle = (status: TaskStatus): CSSProperties => ({
+  ...statusSectionStyle,
+  ...statusSectionStyles[status],
+})
 
 export const emptyContainerStyle: CSSProperties = {
   display: 'grid',

@@ -1,3 +1,5 @@
+import { formatTaskStatus } from '../../../lib/formatTaskStatus'
+import { groupTasksByStatus } from '../../../lib/groupTasksByStatus'
 import { useVisibleTasks } from '../../../hooks/useVisibleTasks'
 import { useTasksStore } from '../../../store/useTasksStore'
 import { EmptyResultsState } from '../EmptyResultsState/EmptyResultsState'
@@ -8,10 +10,15 @@ import {
   emptyContainerStyle,
   emptyCopyStyle,
   emptyTitleStyle,
+  getStatusSectionStyle,
   headerActionsStyle,
   headerStyle,
   listStyle,
   panelStyle,
+  statusCountStyle,
+  statusHeaderStyle,
+  statusSectionStyle,
+  statusTitleStyle,
   titleStyle,
 } from './style'
 
@@ -24,6 +31,7 @@ export function TasksList({ onDeleteAllTasks }: TasksListProps) {
   const visibleTasks = useVisibleTasks()
   const selectedTaskId = useTasksStore((state) => state.selectedTaskId)
   const selectTask = useTasksStore((state) => state.selectTask)
+  const groupedTasks = groupTasksByStatus(visibleTasks)
 
   return (
     <section style={panelStyle}>
@@ -48,13 +56,24 @@ export function TasksList({ onDeleteAllTasks }: TasksListProps) {
         <EmptyResultsState />
       ) : (
         <div style={listStyle}>
-          {visibleTasks.map((task) => (
-            <TaskCard
-              key={task.id}
-              isSelected={task.id === selectedTaskId}
-              onSelect={selectTask}
-              task={task}
-            />
+          {groupedTasks.map((group) => (
+            <section key={group.status} style={getStatusSectionStyle(group.status)}>
+              <div style={statusHeaderStyle}>
+                <h3 style={statusTitleStyle}>{formatTaskStatus(group.status)}</h3>
+                <span style={statusCountStyle}>{group.tasks.length}</span>
+              </div>
+
+              <div style={listStyle}>
+                {group.tasks.map((task) => (
+                  <TaskCard
+                    key={task.id}
+                    isSelected={task.id === selectedTaskId}
+                    onSelect={selectTask}
+                    task={task}
+                  />
+                ))}
+              </div>
+            </section>
           ))}
         </div>
       )}
