@@ -90,7 +90,9 @@ export function TasksList({ onDeleteAllTasks, onStatusChange }: TasksListProps) 
       {tasks.length === 0 ? (
         <div style={emptyContainerStyle}>
           <p style={emptyTitleStyle}>No tasks available</p>
-          <p style={emptyCopyStyle}>Mock data will appear here once the repository returns data.</p>
+          <p style={emptyCopyStyle}>
+            Add a new task or reset local storage to restore the default mock data.
+          </p>
         </div>
       ) : visibleTasks.length === 0 ? (
         <EmptyResultsState />
