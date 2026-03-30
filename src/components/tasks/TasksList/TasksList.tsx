@@ -4,16 +4,22 @@ import { EmptyResultsState } from '../EmptyResultsState/EmptyResultsState'
 import { TaskCard } from '../TaskCard/TaskCard'
 import {
   countStyle,
+  deleteAllButtonStyle,
   emptyContainerStyle,
   emptyCopyStyle,
   emptyTitleStyle,
+  headerActionsStyle,
   headerStyle,
   listStyle,
   panelStyle,
   titleStyle,
 } from './style'
 
-export function TasksList() {
+interface TasksListProps {
+  onDeleteAllTasks: () => void
+}
+
+export function TasksList({ onDeleteAllTasks }: TasksListProps) {
   const tasks = useTasksStore((state) => state.tasks)
   const visibleTasks = useVisibleTasks()
   const selectedTaskId = useTasksStore((state) => state.selectedTaskId)
@@ -23,7 +29,14 @@ export function TasksList() {
     <section style={panelStyle}>
       <div style={headerStyle}>
         <h2 style={titleStyle}>Tasks</h2>
-        <span style={countStyle}>{visibleTasks.length}</span>
+        <div style={headerActionsStyle}>
+          {tasks.length > 0 ? (
+            <button onClick={onDeleteAllTasks} style={deleteAllButtonStyle} type="button">
+              Delete all
+            </button>
+          ) : null}
+          <span style={countStyle}>{visibleTasks.length}</span>
+        </div>
       </div>
 
       {tasks.length === 0 ? (

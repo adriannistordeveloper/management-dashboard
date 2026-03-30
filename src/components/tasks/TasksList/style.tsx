@@ -16,6 +16,14 @@ export const headerStyle: CSSProperties = {
   marginBottom: '20px',
 }
 
+export const headerActionsStyle: CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '10px',
+  flexWrap: 'wrap',
+  justifyContent: 'flex-end',
+}
+
 export const titleStyle: CSSProperties = {
   margin: 0,
 }
@@ -28,6 +36,20 @@ export const countStyle: CSSProperties = {
   color: '#3151a6',
   textAlign: 'center',
   fontWeight: 700,
+}
+
+export const deleteAllButtonStyle: CSSProperties = {
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#d92d20',
+  borderRadius: '999px',
+  background: '#ffffff',
+  color: '#b42318',
+  padding: '6px 12px',
+  font: 'inherit',
+  fontSize: '13px',
+  fontWeight: 700,
+  cursor: 'pointer',
 }
 
 export const listStyle: CSSProperties = {

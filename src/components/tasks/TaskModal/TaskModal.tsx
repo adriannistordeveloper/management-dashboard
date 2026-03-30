@@ -23,7 +23,7 @@ export function TaskModal({ children, onClose, subtitle, title }: TaskModalProps
         <div style={headerStyle}>
           <div>
             <h2 style={titleStyle}>{title}</h2>
-            <p style={subtitleStyle}>{subtitle}</p>
+            {subtitle ? <p style={subtitleStyle}>{subtitle}</p> : null}
           </div>
           <button aria-label="Close task modal" onClick={onClose} style={closeButtonStyle} type="button">
             ×

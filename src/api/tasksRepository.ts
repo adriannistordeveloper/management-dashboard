@@ -64,4 +64,9 @@ export const tasksRepository = {
     await wait(REPOSITORY_DELAY_MS)
     tasksDb = tasksDb.filter((task) => task.id !== taskId)
   },
+
+  async deleteAllTasks(): Promise<void> {
+    await wait(REPOSITORY_DELAY_MS)
+    tasksDb = []
+  },
 }

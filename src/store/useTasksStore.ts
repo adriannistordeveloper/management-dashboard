@@ -23,6 +23,7 @@ interface TasksState {
   createTask: (values: TaskFormValues) => Promise<Task>
   updateTask: (taskId: string, values: TaskFormValues) => Promise<Task>
   deleteTask: (taskId: string) => Promise<void>
+  deleteAllTasks: () => Promise<void>
   markHydrated: () => void
 }
 
@@ -159,6 +160,23 @@ export const useTasksStore = create<TasksState>()(
         } catch {
           set({ error: 'We could not delete the task right now.' })
           throw new Error('Delete task failed')
+        }
+      },
+
+      async deleteAllTasks() {
+        set({ error: null })
+
+        try {
+          await tasksRepository.deleteAllTasks()
+
+          set({
+            tasks: [],
+            selectedTaskId: null,
+            hasInitializedData: true,
+          })
+        } catch {
+          set({ error: 'We could not delete all tasks right now.' })
+          throw new Error('Delete all tasks failed')
         }
       },
 

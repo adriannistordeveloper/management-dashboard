@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useSelectedTask } from '../../../hooks/useSelectedTask'
 import { useTasksStore } from '../../../store/useTasksStore'
 import type { Task, TaskFormValues } from '../../../types/task.types'
+import { DeleteAllConfirmation } from '../DeleteAllConfirmation/DeleteAllConfirmation'
 import { DeleteTaskConfirmation } from '../DeleteTaskConfirmation/DeleteTaskConfirmation'
 import { TaskForm } from '../TaskForm/TaskForm'
 import { TaskModal } from '../TaskModal/TaskModal'
@@ -11,6 +12,7 @@ import { TasksErrorState } from '../TasksErrorState/TasksErrorState'
 import { TasksList } from '../TasksList/TasksList'
 import { TasksLoadingState } from '../TasksLoadingState/TasksLoadingState'
 import { TasksToolbar } from '../TasksToolbar/TasksToolbar'
+import { ToastViewport } from '../ToastViewport/ToastViewport'
 import {
   dashboardGridStyle,
   dashboardShellStyle,
@@ -23,6 +25,7 @@ export function TasksDashboard() {
   const createTask = useTasksStore((state) => state.createTask)
   const updateTask = useTasksStore((state) => state.updateTask)
   const deleteTask = useTasksStore((state) => state.deleteTask)
+  const deleteAllTasks = useTasksStore((state) => state.deleteAllTasks)
   const hasHydrated = useTasksStore((state) => state.hasHydrated)
   const hasInitializedData = useTasksStore((state) => state.hasInitializedData)
   const tasks = useTasksStore((state) => state.tasks)
@@ -31,7 +34,25 @@ export function TasksDashboard() {
   const selectedTask = useSelectedTask()
   const [modalMode, setModalMode] = useState<'create' | 'edit' | null>(null)
   const [taskPendingDelete, setTaskPendingDelete] = useState<Task | null>(null)
+  const [isDeleteAllPending, setIsDeleteAllPending] = useState(false)
   const [isDeletingTask, setIsDeletingTask] = useState(false)
+  const [toasts, setToasts] = useState<
+    { id: number; title: string; message: string; tone: 'success' | 'error' | 'destructive' }[]
+  >([])
+
+  const pushToast = (toast: {
+    title: string
+    message: string
+    tone: 'success' | 'error' | 'destructive'
+  }) => {
+    const id = Date.now() + Math.floor(Math.random() * 1000)
+
+    setToasts((currentToasts) => [...currentToasts, { id, ...toast }])
+
+    window.setTimeout(() => {
+      setToasts((currentToasts) => currentToasts.filter((currentToast) => currentToast.id !== id))
+    }, 3200)
+  }
 
   useEffect(() => {
     if (!hasHydrated) {
@@ -86,7 +107,7 @@ export function TasksDashboard() {
         </section>
       ) : (
         <section style={dashboardGridStyle}>
-          <TasksList />
+          <TasksList onDeleteAllTasks={() => setIsDeleteAllPending(true)} />
           <TaskDetailsPanel
             onDeleteTask={(task) => void handleDeleteTask(task)}
             onEditTask={() => setModalMode('edit')}
@@ -108,13 +129,31 @@ export function TasksDashboard() {
             initialValues={modalMode === 'create' ? defaultFormValues : editFormValues}
             onCancel={() => setModalMode(null)}
             onSubmit={async (values) => {
-              if (modalMode === 'create') {
-                await createTask(values)
-              } else if (selectedTask) {
-                await updateTask(selectedTask.id, values)
-              }
+              try {
+                if (modalMode === 'create') {
+                  const createdTask = await createTask(values)
+                  pushToast({
+                    title: 'Task created',
+                    message: `"${createdTask.title}" is now in the dashboard.`,
+                    tone: 'success',
+                  })
+                } else if (selectedTask) {
+                  const updatedTask = await updateTask(selectedTask.id, values)
+                  pushToast({
+                    title: 'Task updated',
+                    message: `"${updatedTask.title}" was updated successfully.`,
+                    tone: 'success',
+                  })
+                }
 
-              setModalMode(null)
+                setModalMode(null)
+              } catch {
+                pushToast({
+                  title: 'Action failed',
+                  message: 'We could not save the task right now.',
+                  tone: 'error',
+                })
+              }
             }}
             submitLabel={modalMode === 'create' ? 'Create task' : 'Save changes'}
           />
@@ -139,7 +178,18 @@ export function TasksDashboard() {
 
               try {
                 await deleteTask(taskPendingDelete.id)
+                pushToast({
+                  title: 'Task deleted',
+                  message: `"${taskPendingDelete.title}" was removed from the dashboard.`,
+                  tone: 'destructive',
+                })
                 setTaskPendingDelete(null)
+              } catch {
+                pushToast({
+                  title: 'Delete failed',
+                  message: 'We could not delete the task right now.',
+                  tone: 'error',
+                })
               } finally {
                 setIsDeletingTask(false)
               }
@@ -148,6 +198,47 @@ export function TasksDashboard() {
           />
         </TaskModal>
       ) : null}
+
+      {isDeleteAllPending ? (
+        <TaskModal
+          onClose={() => {
+            if (!isDeletingTask) {
+              setIsDeleteAllPending(false)
+            }
+          }}
+          subtitle=""
+          title="Delete all tasks"
+        >
+          <DeleteAllConfirmation
+            count={tasks.length}
+            isDeleting={isDeletingTask}
+            onCancel={() => setIsDeleteAllPending(false)}
+            onConfirm={async () => {
+              setIsDeletingTask(true)
+
+              try {
+                await deleteAllTasks()
+                pushToast({
+                  title: 'All tasks deleted',
+                  message: 'The dashboard task list has been cleared.',
+                  tone: 'destructive',
+                })
+                setIsDeleteAllPending(false)
+              } catch {
+                pushToast({
+                  title: 'Delete failed',
+                  message: 'We could not delete all tasks right now.',
+                  tone: 'error',
+                })
+              } finally {
+                setIsDeletingTask(false)
+              }
+            }}
+          />
+        </TaskModal>
+      ) : null}
+
+      <ToastViewport toasts={toasts} />
     </main>
   )
 }

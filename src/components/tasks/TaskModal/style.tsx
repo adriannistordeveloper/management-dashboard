@@ -39,11 +39,18 @@ export const subtitleStyle: CSSProperties = {
 }
 
 export const closeButtonStyle: CSSProperties = {
+  width: '40px',
+  height: '40px',
   border: 'none',
-  background: 'transparent',
-  color: '#5c6b84',
+  borderRadius: '999px',
+  background: '#eef2f7',
+  color: '#4c5a73',
   font: 'inherit',
   fontSize: '24px',
   lineHeight: 1,
   cursor: 'pointer',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
 }
