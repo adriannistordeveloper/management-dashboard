@@ -2,6 +2,7 @@ export type TaskStatus = 'todo' | 'in_progress' | 'done'
 
 export type TaskSortField = 'title' | 'dueDate' | 'createdAt'
 export type SortDirection = 'asc' | 'desc'
+export type TasksViewMode = 'list' | 'board'
 
 export interface Task {
   id: string

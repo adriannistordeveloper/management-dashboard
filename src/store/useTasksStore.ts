@@ -2,13 +2,14 @@ import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
 import { tasksRepository } from '../api/tasksRepository'
-import type { Task, TaskFilters, TaskFormValues, TaskSort } from '../types/task.types'
+import type { Task, TaskFilters, TaskFormValues, TasksViewMode, TaskSort } from '../types/task.types'
 
 interface TasksState {
   tasks: Task[]
   selectedTaskId: string | null
   filters: TaskFilters
   sort: TaskSort
+  viewMode: TasksViewMode
   hasHydrated: boolean
   hasInitializedData: boolean
   isLoading: boolean
@@ -19,6 +20,7 @@ interface TasksState {
   clearError: () => void
   setFilters: (filters: Partial<TaskFilters>) => void
   setSort: (sort: TaskSort) => void
+  setViewMode: (viewMode: TasksViewMode) => void
   resetFilters: () => void
   createTask: (values: TaskFormValues) => Promise<Task>
   updateTask: (taskId: string, values: TaskFormValues) => Promise<Task>
@@ -45,6 +47,7 @@ export const useTasksStore = create<TasksState>()(
       selectedTaskId: null,
       filters: initialFilters,
       sort: initialSort,
+      viewMode: 'list',
       hasHydrated: false,
       hasInitializedData: false,
       isLoading: false,
@@ -97,6 +100,10 @@ export const useTasksStore = create<TasksState>()(
 
       setSort(sort) {
         set({ sort })
+      },
+
+      setViewMode(viewMode) {
+        set({ viewMode })
       },
 
       resetFilters() {
@@ -192,6 +199,7 @@ export const useTasksStore = create<TasksState>()(
         selectedTaskId: state.selectedTaskId,
         filters: state.filters,
         sort: state.sort,
+        viewMode: state.viewMode,
         hasInitializedData: state.hasInitializedData,
       }),
       onRehydrateStorage: () => (state) => {

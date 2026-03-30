@@ -9,10 +9,12 @@ import { TaskForm } from '../TaskForm/TaskForm'
 import { TaskModal } from '../TaskModal/TaskModal'
 import { TaskDetailsPanel } from '../TaskDetailsPanel/TaskDetailsPanel'
 import { TasksErrorState } from '../TasksErrorState/TasksErrorState'
+import { TasksBoard } from '../TasksBoard/TasksBoard'
 import { TasksList } from '../TasksList/TasksList'
 import { TasksLoadingState } from '../TasksLoadingState/TasksLoadingState'
 import { TasksToolbar } from '../TasksToolbar/TasksToolbar'
 import { ToastViewport } from '../ToastViewport/ToastViewport'
+import { ViewModeToggle } from '../ViewModeToggle/ViewModeToggle'
 import {
   dashboardGridStyle,
   dashboardShellStyle,
@@ -26,6 +28,8 @@ export function TasksDashboard() {
   const updateTask = useTasksStore((state) => state.updateTask)
   const deleteTask = useTasksStore((state) => state.deleteTask)
   const deleteAllTasks = useTasksStore((state) => state.deleteAllTasks)
+  const viewMode = useTasksStore((state) => state.viewMode)
+  const setViewMode = useTasksStore((state) => state.setViewMode)
   const hasHydrated = useTasksStore((state) => state.hasHydrated)
   const hasInitializedData = useTasksStore((state) => state.hasInitializedData)
   const tasks = useTasksStore((state) => state.tasks)
@@ -106,13 +110,21 @@ export function TasksDashboard() {
           </section>
         </section>
       ) : (
-        <section style={dashboardGridStyle}>
-          <TasksList onDeleteAllTasks={() => setIsDeleteAllPending(true)} />
+        <>
+          <ViewModeToggle onChange={setViewMode} viewMode={viewMode} />
+
+          <section style={dashboardGridStyle}>
+            {viewMode === 'list' ? (
+              <TasksList onDeleteAllTasks={() => setIsDeleteAllPending(true)} />
+            ) : (
+              <TasksBoard onDeleteAllTasks={() => setIsDeleteAllPending(true)} />
+            )}
           <TaskDetailsPanel
             onDeleteTask={(task) => void handleDeleteTask(task)}
             onEditTask={() => setModalMode('edit')}
           />
-        </section>
+          </section>
+        </>
       )}
 
       {modalMode ? (
