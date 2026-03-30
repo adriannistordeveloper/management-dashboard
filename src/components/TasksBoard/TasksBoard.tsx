@@ -1,13 +1,19 @@
+import { useState } from 'react'
+
 import { formatTaskStatus } from '../../lib/formatTaskStatus'
 import { groupTasksByStatus } from '../../lib/groupTasksByStatus'
 import { useVisibleTasks } from '../../hooks/useVisibleTasks'
 import { useTasksStore } from '../../store/useTasksStore'
+import type { TaskStatus } from '../../types/task.types'
 import type { TasksBoardProps } from '../../types/task-ui.types'
 import { EmptyResultsState } from '../EmptyResultsState/EmptyResultsState'
 import { TaskCard } from '../TaskCard/TaskCard'
 import {
   boardGridStyle,
+  collapseIconStyle,
+  collapseIconSvgStyle,
   columnCountStyle,
+  columnHeaderMetaStyle,
   columnStyle,
   countStyle,
   deleteAllButtonStyle,
@@ -17,7 +23,14 @@ import {
   panelStyle,
   titleStyle,
   columnTitleStyle,
+  toggleAllButtonStyle,
 } from './style'
+
+const initialCollapsedSections: Record<TaskStatus, boolean> = {
+  todo: false,
+  in_progress: false,
+  done: true,
+}
 
 export function TasksBoard({ onDeleteAllTasks, onStatusChange }: TasksBoardProps) {
   const tasks = useTasksStore((state) => state.tasks)
@@ -25,12 +38,42 @@ export function TasksBoard({ onDeleteAllTasks, onStatusChange }: TasksBoardProps
   const selectedTaskId = useTasksStore((state) => state.selectedTaskId)
   const selectTask = useTasksStore((state) => state.selectTask)
   const groupedTasks = groupTasksByStatus(visibleTasks)
+  const [collapsedSections, setCollapsedSections] =
+    useState<Record<TaskStatus, boolean>>(initialCollapsedSections)
+  const allSectionsCollapsed =
+    groupedTasks.length > 0 && groupedTasks.every((group) => collapsedSections[group.status])
+
+  const toggleSection = (status: TaskStatus) => {
+    setCollapsedSections((currentSections) => ({
+      ...currentSections,
+      [status]: !currentSections[status],
+    }))
+  }
+
+  const toggleAllSections = () => {
+    setCollapsedSections((currentSections) => {
+      const shouldExpandAll = groupedTasks.every((group) => currentSections[group.status])
+
+      return groupedTasks.reduce<Record<TaskStatus, boolean>>(
+        (nextSections, group) => {
+          nextSections[group.status] = !shouldExpandAll
+          return nextSections
+        },
+        { ...currentSections },
+      )
+    })
+  }
 
   return (
     <section style={panelStyle}>
       <div style={headerStyle}>
         <h2 style={titleStyle}>Board</h2>
         <div style={headerActionsStyle}>
+          {tasks.length > 0 ? (
+            <button onClick={toggleAllSections} style={toggleAllButtonStyle} type="button">
+              {allSectionsCollapsed ? 'Show all' : 'Collapse all'}
+            </button>
+          ) : null}
           {tasks.length > 0 ? (
             <button onClick={onDeleteAllTasks} style={deleteAllButtonStyle} type="button">
               Delete all
@@ -46,22 +89,49 @@ export function TasksBoard({ onDeleteAllTasks, onStatusChange }: TasksBoardProps
         <div style={boardGridStyle}>
           {groupedTasks.map((group) => (
             <section key={group.status} style={columnStyle}>
-              <div style={getColumnHeaderStyle(group.status)}>
+              <button
+                aria-label={`${
+                  collapsedSections[group.status] ? 'Expand' : 'Collapse'
+                } ${formatTaskStatus(group.status)} tasks`}
+                onClick={() => toggleSection(group.status)}
+                style={getColumnHeaderStyle(group.status)}
+                type="button"
+              >
                 <h3 style={columnTitleStyle}>{formatTaskStatus(group.status)}</h3>
-                <span style={columnCountStyle}>{group.tasks.length}</span>
-              </div>
+                <div style={columnHeaderMetaStyle}>
+                  <span style={columnCountStyle}>{group.tasks.length}</span>
+                  <span style={collapseIconStyle}>
+                    <svg aria-hidden="true" style={collapseIconSvgStyle} viewBox="0 0 16 16">
+                      <path
+                        d={
+                          collapsedSections[group.status]
+                            ? 'M4 6.5L8 10L12 6.5'
+                            : 'M4 9.5L8 6L12 9.5'
+                        }
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.8"
+                      />
+                    </svg>
+                  </span>
+                </div>
+              </button>
 
-              <div style={columnStyle}>
-                {group.tasks.map((task) => (
-                  <TaskCard
-                    key={task.id}
-                    isSelected={task.id === selectedTaskId}
-                    onSelect={selectTask}
-                    onStatusChange={onStatusChange}
-                    task={task}
-                  />
-                ))}
-              </div>
+              {!collapsedSections[group.status] ? (
+                <div style={columnStyle}>
+                  {group.tasks.map((task) => (
+                    <TaskCard
+                      key={task.id}
+                      isSelected={task.id === selectedTaskId}
+                      onSelect={selectTask}
+                      onStatusChange={onStatusChange}
+                      task={task}
+                    />
+                  ))}
+                </div>
+              ) : null}
             </section>
           ))}
         </div>
