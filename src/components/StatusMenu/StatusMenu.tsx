@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-
 import { formatTaskStatus } from '../../lib/formatTaskStatus'
+import { useDismissibleMenu } from '../../hooks/useDismissibleMenu'
 import type { TaskStatus } from '../../types/task.types'
 import type { StatusMenuProps } from '../../types/task-ui.types'
 import { chevronStyle, containerStyle, getTriggerStyle, menuItemStyle, menuStyle } from './style'
@@ -8,30 +7,7 @@ import { chevronStyle, containerStyle, getTriggerStyle, menuItemStyle, menuStyle
 const statusOptions: TaskStatus[] = ['todo', 'in_progress', 'done']
 
 export function StatusMenu({ onChange, status }: StatusMenuProps) {
-  const [isOpen, setIsOpen] = useState(false)
-  const containerRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
-    const handlePointerDown = (event: MouseEvent) => {
-      if (!containerRef.current?.contains(event.target as Node)) {
-        setIsOpen(false)
-      }
-    }
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsOpen(false)
-      }
-    }
-
-    window.addEventListener('mousedown', handlePointerDown)
-    window.addEventListener('keydown', handleKeyDown)
-
-    return () => {
-      window.removeEventListener('mousedown', handlePointerDown)
-      window.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [])
+  const { containerRef, isOpen, setIsOpen } = useDismissibleMenu()
 
   return (
     <div ref={containerRef} style={containerStyle}>

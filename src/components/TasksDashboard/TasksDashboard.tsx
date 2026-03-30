@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 
 import { useSelectedTask } from '../../hooks/useSelectedTask'
+import { useTaskToasts } from '../../hooks/useTaskToasts'
 import { useTasksStore } from '../../store/useTasksStore'
 import type { Task, TaskFormValues, TaskStatus } from '../../types/task.types'
-import type { ModalMode, ToastMessage, ToastTone } from '../../types/task-ui.types'
+import type { ModalMode } from '../../types/task-ui.types'
 import { DeleteAllConfirmation } from '../DeleteAllConfirmation/DeleteAllConfirmation'
 import { DeleteTaskConfirmation } from '../DeleteTaskConfirmation/DeleteTaskConfirmation'
 import { TaskForm } from '../TaskForm/TaskForm'
@@ -42,17 +43,7 @@ export function TasksDashboard() {
   const [taskPendingDelete, setTaskPendingDelete] = useState<Task | null>(null)
   const [isDeleteAllPending, setIsDeleteAllPending] = useState(false)
   const [isDeletingTask, setIsDeletingTask] = useState(false)
-  const [toasts, setToasts] = useState<ToastMessage[]>([])
-
-  const pushToast = (toast: { title: string; message: string; tone: ToastTone }) => {
-    const id = Date.now() + Math.floor(Math.random() * 1000)
-
-    setToasts((currentToasts) => [...currentToasts, { id, ...toast }])
-
-    window.setTimeout(() => {
-      setToasts((currentToasts) => currentToasts.filter((currentToast) => currentToast.id !== id))
-    }, 3200)
-  }
+  const { pushToast, toasts } = useTaskToasts()
 
   useEffect(() => {
     if (!hasHydrated) {
