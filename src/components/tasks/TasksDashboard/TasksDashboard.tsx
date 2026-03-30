@@ -28,6 +28,7 @@ export function TasksDashboard() {
   const updateTask = useTasksStore((state) => state.updateTask)
   const deleteTask = useTasksStore((state) => state.deleteTask)
   const deleteAllTasks = useTasksStore((state) => state.deleteAllTasks)
+  const resetDashboardState = useTasksStore((state) => state.resetDashboardState)
   const viewMode = useTasksStore((state) => state.viewMode)
   const setViewMode = useTasksStore((state) => state.setViewMode)
   const hasHydrated = useTasksStore((state) => state.hasHydrated)
@@ -93,6 +94,18 @@ export function TasksDashboard() {
     setTaskPendingDelete(task)
   }
 
+  const handleResetStorage = () => {
+    useTasksStore.persist.clearStorage()
+    resetDashboardState()
+    void fetchTasks()
+
+    pushToast({
+      title: 'Dashboard reset',
+      message: 'Local storage was cleared and the default mock tasks were restored.',
+      tone: 'success',
+    })
+  }
+
   const handleStatusChange = (task: Task) => async (status: TaskStatus) => {
     if (task.status === status) {
       return
@@ -123,7 +136,10 @@ export function TasksDashboard() {
 
   return (
     <main style={dashboardShellStyle}>
-      <TasksToolbar onCreateTask={() => setModalMode('create')} />
+      <TasksToolbar
+        onCreateTask={() => setModalMode('create')}
+        onResetStorage={handleResetStorage}
+      />
 
       {isLoading ? (
         <section style={singleColumnGridStyle}>

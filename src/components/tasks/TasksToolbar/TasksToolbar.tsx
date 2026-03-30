@@ -11,20 +11,23 @@ import {
   introBlockStyle,
   primaryButtonStyle,
   resetButtonStyle,
+  resetStorageButtonStyle,
   searchFieldGroupStyle,
   selectStyle,
   sortFieldGroupStyle,
   summaryStyle,
   titleStyle,
+  titleRowStyle,
   toolbarActionsStyle,
   toolbarStyle,
 } from './style'
 
 interface TasksToolbarProps {
   onCreateTask: () => void
+  onResetStorage: () => void
 }
 
-export function TasksToolbar({ onCreateTask }: TasksToolbarProps) {
+export function TasksToolbar({ onCreateTask, onResetStorage }: TasksToolbarProps) {
   const tasks = useTasksStore((state) => state.tasks)
   const filters = useTasksStore((state) => state.filters)
   const sort = useTasksStore((state) => state.sort)
@@ -38,7 +41,12 @@ export function TasksToolbar({ onCreateTask }: TasksToolbarProps) {
   return (
     <header style={toolbarStyle}>
       <div style={introBlockStyle}>
-        <h1 style={titleStyle}>Task Management Dashboard</h1>
+        <div style={titleRowStyle}>
+          <h1 style={titleStyle}>Task Management Dashboard</h1>
+          <button onClick={onResetStorage} style={resetStorageButtonStyle} type="button">
+            Reset local storage
+          </button>
+        </div>
       </div>
 
       <div style={controlsCardStyle}>

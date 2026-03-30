@@ -16,11 +16,34 @@ export const introBlockStyle: CSSProperties = {
   flexWrap: 'wrap',
 }
 
+export const titleRowStyle: CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  width: '100%',
+  gap: '12px',
+  flexWrap: 'wrap',
+}
+
 export const titleStyle: CSSProperties = {
   margin: 0,
   fontSize: 'clamp(28px, 4vw, 34px)',
   lineHeight: 1.1,
   color: '#3151a6',
+}
+
+export const resetStorageButtonStyle: CSSProperties = {
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#c8d5eb',
+  borderRadius: '999px',
+  background: '#ffffff',
+  color: '#344054',
+  padding: '8px 12px',
+  font: 'inherit',
+  fontSize: '13px',
+  fontWeight: 700,
+  cursor: 'pointer',
 }
 
 export const controlsCardStyle: CSSProperties = {

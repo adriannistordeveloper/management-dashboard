@@ -22,6 +22,7 @@ interface TasksState {
   setSort: (sort: TaskSort) => void
   setViewMode: (viewMode: TasksViewMode) => void
   resetFilters: () => void
+  resetDashboardState: () => void
   createTask: (values: TaskFormValues) => Promise<Task>
   updateTask: (taskId: string, values: TaskFormValues) => Promise<Task>
   deleteTask: (taskId: string) => Promise<void>
@@ -108,6 +109,20 @@ export const useTasksStore = create<TasksState>()(
 
       resetFilters() {
         set({ filters: initialFilters, sort: initialSort })
+      },
+
+      resetDashboardState() {
+        tasksRepository.resetToMockTasks()
+
+        set({
+          tasks: [],
+          selectedTaskId: null,
+          filters: initialFilters,
+          sort: initialSort,
+          viewMode: 'list',
+          hasInitializedData: false,
+          error: null,
+        })
       },
 
       async createTask(values) {
