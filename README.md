@@ -24,6 +24,11 @@ A React + TypeScript dashboard for managing tasks with mock data, filtering, sor
 - Explicit loading, error, empty, and filtered-empty states
 - Small test suite for the core filtering, sorting, and grouping logic
 
+## What's next
+
+- Priority tags and filtering, for example `minor`, `major`, and `critical`
+- Draggable cards in board view
+
 ## Run locally
 
 ```bash
