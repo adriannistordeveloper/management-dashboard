@@ -1,12 +1,11 @@
 import type { Task } from '../../../types/task.types'
 import { formatDate } from '../../../lib/formatDate'
-import { formatTaskStatus } from '../../../lib/formatTaskStatus'
+import { StatusMenu } from '../StatusMenu/StatusMenu'
 import {
   cardBaseStyle,
   cardSelectedStyle,
   dateStyle,
   descriptionStyle,
-  getStatusBadgeStyle,
   metaStyle,
   sourceBadgeStyle,
   titleStyle,
@@ -15,12 +14,13 @@ import {
 } from './style'
 
 interface TaskCardProps {
+  onStatusChange: (task: Task) => (status: Task['status']) => void
   isSelected: boolean
   onSelect: (taskId: string) => void
   task: Task
 }
 
-export function TaskCard({ isSelected, onSelect, task }: TaskCardProps) {
+export function TaskCard({ isSelected, onSelect, onStatusChange, task }: TaskCardProps) {
   return (
     <button
       onClick={() => onSelect(task.id)}
@@ -28,7 +28,7 @@ export function TaskCard({ isSelected, onSelect, task }: TaskCardProps) {
       type="button"
     >
       <div style={topRowStyle}>
-        <span style={getStatusBadgeStyle(task.status)}>{formatTaskStatus(task.status)}</span>
+        <StatusMenu onChange={onStatusChange(task)} status={task.status} />
         <span style={dateStyle}>{formatDate(task.dueDate)}</span>
       </div>
       <div style={titleRowStyle}>

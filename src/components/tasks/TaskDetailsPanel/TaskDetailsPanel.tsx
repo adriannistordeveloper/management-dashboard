@@ -1,18 +1,17 @@
 import type { Task } from '../../../types/task.types'
 import { formatDate } from '../../../lib/formatDate'
-import { formatTaskStatus } from '../../../lib/formatTaskStatus'
 import { useVisibleTasks } from '../../../hooks/useVisibleTasks'
 import { useSelectedTask } from '../../../hooks/useSelectedTask'
 import { useTasksStore } from '../../../store/useTasksStore'
 import { HiddenSelectionState } from '../HiddenSelectionState/HiddenSelectionState'
 import { NoSelectionState } from '../NoSelectionState/NoSelectionState'
+import { StatusMenu } from '../StatusMenu/StatusMenu'
 import {
   actionsStyle,
   dangerButtonStyle,
   descriptionBlockStyle,
   descriptionStyle,
   eyebrowStyle,
-  getStatusBadgeStyle,
   gridStyle,
   headerStyle,
   headingStyle,
@@ -27,9 +26,14 @@ import {
 interface TaskDetailsPanelProps {
   onDeleteTask: (task: Task) => void
   onEditTask: (task: Task) => void
+  onStatusChange: (task: Task) => (status: Task['status']) => void
 }
 
-export function TaskDetailsPanel({ onDeleteTask, onEditTask }: TaskDetailsPanelProps) {
+export function TaskDetailsPanel({
+  onDeleteTask,
+  onEditTask,
+  onStatusChange,
+}: TaskDetailsPanelProps) {
   const visibleTasks = useVisibleTasks()
   const resetFilters = useTasksStore((state) => state.resetFilters)
   const selectedTask = useSelectedTask()
@@ -72,9 +76,7 @@ export function TaskDetailsPanel({ onDeleteTask, onEditTask }: TaskDetailsPanelP
         <div style={gridStyle}>
           <div style={metaItemStyle}>
             <span style={labelStyle}>Status</span>
-            <strong style={getStatusBadgeStyle(selectedTask.status)}>
-              {formatTaskStatus(selectedTask.status)}
-            </strong>
+            <StatusMenu onChange={onStatusChange(selectedTask)} status={selectedTask.status} />
           </div>
           <div style={metaItemStyle}>
             <span style={labelStyle}>Owner</span>

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 
 import { useSelectedTask } from '../../../hooks/useSelectedTask'
 import { useTasksStore } from '../../../store/useTasksStore'
-import type { Task, TaskFormValues } from '../../../types/task.types'
+import type { Task, TaskFormValues, TaskStatus } from '../../../types/task.types'
 import { DeleteAllConfirmation } from '../DeleteAllConfirmation/DeleteAllConfirmation'
 import { DeleteTaskConfirmation } from '../DeleteTaskConfirmation/DeleteTaskConfirmation'
 import { TaskForm } from '../TaskForm/TaskForm'
@@ -93,6 +93,34 @@ export function TasksDashboard() {
     setTaskPendingDelete(task)
   }
 
+  const handleStatusChange = (task: Task) => async (status: TaskStatus) => {
+    if (task.status === status) {
+      return
+    }
+
+    try {
+      await updateTask(task.id, {
+        title: task.title,
+        description: task.description,
+        status,
+        owner: task.owner,
+        dueDate: task.dueDate,
+      })
+
+      pushToast({
+        title: 'Status updated',
+        message: `"${task.title}" moved to ${status === 'todo' ? 'To do' : status === 'in_progress' ? 'In progress' : 'Done'}.`,
+        tone: 'success',
+      })
+    } catch {
+      pushToast({
+        title: 'Status update failed',
+        message: 'We could not update the task status right now.',
+        tone: 'error',
+      })
+    }
+  }
+
   return (
     <main style={dashboardShellStyle}>
       <TasksToolbar onCreateTask={() => setModalMode('create')} />
@@ -115,13 +143,20 @@ export function TasksDashboard() {
 
           <section style={dashboardGridStyle}>
             {viewMode === 'list' ? (
-              <TasksList onDeleteAllTasks={() => setIsDeleteAllPending(true)} />
+              <TasksList
+                onDeleteAllTasks={() => setIsDeleteAllPending(true)}
+                onStatusChange={handleStatusChange}
+              />
             ) : (
-              <TasksBoard onDeleteAllTasks={() => setIsDeleteAllPending(true)} />
+              <TasksBoard
+                onDeleteAllTasks={() => setIsDeleteAllPending(true)}
+                onStatusChange={handleStatusChange}
+              />
             )}
           <TaskDetailsPanel
             onDeleteTask={(task) => void handleDeleteTask(task)}
             onEditTask={() => setModalMode('edit')}
+            onStatusChange={handleStatusChange}
           />
           </section>
         </>

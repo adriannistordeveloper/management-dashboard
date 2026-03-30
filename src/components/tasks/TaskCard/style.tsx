@@ -1,7 +1,5 @@
 import type { CSSProperties } from 'react'
 
-import type { TaskStatus } from '../../../types/task.types'
-
 export const cardBaseStyle: CSSProperties = {
   width: '100%',
   borderWidth: '1px',
@@ -71,31 +69,3 @@ export const sourceBadgeStyle: CSSProperties = {
   fontWeight: 700,
   whiteSpace: 'nowrap',
 }
-
-const statusStyles: Record<TaskStatus, CSSProperties> = {
-  todo: {
-    background: '#fff3d8',
-    color: '#9b5c00',
-  },
-  in_progress: {
-    background: '#dce8ff',
-    color: '#1c4ed8',
-  },
-  done: {
-    background: '#dcfce8',
-    color: '#166534',
-  },
-}
-
-export const getStatusBadgeStyle = (status: TaskStatus): CSSProperties => ({
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  minHeight: '28px',
-  padding: '4px 10px',
-  borderRadius: '999px',
-  fontSize: '12px',
-  fontWeight: 700,
-  textTransform: 'capitalize',
-  ...statusStyles[status],
-})

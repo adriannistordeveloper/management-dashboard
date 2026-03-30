@@ -31,6 +31,9 @@ import {
 
 interface TasksListProps {
   onDeleteAllTasks: () => void
+  onStatusChange: (task: import('../../../types/task.types').Task) => (
+    status: import('../../../types/task.types').TaskStatus,
+  ) => void
 }
 
 const initialCollapsedSections: Record<TaskStatus, boolean> = {
@@ -39,7 +42,7 @@ const initialCollapsedSections: Record<TaskStatus, boolean> = {
   done: true,
 }
 
-export function TasksList({ onDeleteAllTasks }: TasksListProps) {
+export function TasksList({ onDeleteAllTasks, onStatusChange }: TasksListProps) {
   const tasks = useTasksStore((state) => state.tasks)
   const visibleTasks = useVisibleTasks()
   const selectedTaskId = useTasksStore((state) => state.selectedTaskId)
@@ -144,6 +147,7 @@ export function TasksList({ onDeleteAllTasks }: TasksListProps) {
                       key={task.id}
                       isSelected={task.id === selectedTaskId}
                       onSelect={selectTask}
+                      onStatusChange={onStatusChange}
                       task={task}
                     />
                   ))}

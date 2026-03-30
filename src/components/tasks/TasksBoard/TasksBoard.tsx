@@ -2,6 +2,7 @@ import { formatTaskStatus } from '../../../lib/formatTaskStatus'
 import { groupTasksByStatus } from '../../../lib/groupTasksByStatus'
 import { useVisibleTasks } from '../../../hooks/useVisibleTasks'
 import { useTasksStore } from '../../../store/useTasksStore'
+import type { Task, TaskStatus } from '../../../types/task.types'
 import { EmptyResultsState } from '../EmptyResultsState/EmptyResultsState'
 import { TaskCard } from '../TaskCard/TaskCard'
 import {
@@ -20,9 +21,10 @@ import {
 
 interface TasksBoardProps {
   onDeleteAllTasks: () => void
+  onStatusChange: (task: Task) => (status: TaskStatus) => void
 }
 
-export function TasksBoard({ onDeleteAllTasks }: TasksBoardProps) {
+export function TasksBoard({ onDeleteAllTasks, onStatusChange }: TasksBoardProps) {
   const tasks = useTasksStore((state) => state.tasks)
   const visibleTasks = useVisibleTasks()
   const selectedTaskId = useTasksStore((state) => state.selectedTaskId)
@@ -60,6 +62,7 @@ export function TasksBoard({ onDeleteAllTasks }: TasksBoardProps) {
                     key={task.id}
                     isSelected={task.id === selectedTaskId}
                     onSelect={selectTask}
+                    onStatusChange={onStatusChange}
                     task={task}
                   />
                 ))}
