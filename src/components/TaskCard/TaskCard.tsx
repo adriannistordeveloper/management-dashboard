@@ -15,10 +15,18 @@ import {
 
 export function TaskCard({ isSelected, onSelect, onStatusChange, task }: TaskCardProps) {
   return (
-    <button
+    <div
+      aria-pressed={isSelected}
       onClick={() => onSelect(task.id)}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          onSelect(task.id)
+        }
+      }}
+      role="button"
       style={isSelected ? { ...cardBaseStyle, ...cardSelectedStyle } : cardBaseStyle}
-      type="button"
+      tabIndex={0}
     >
       <div style={topRowStyle}>
         <StatusMenu onChange={onStatusChange(task)} status={task.status} />
@@ -32,6 +40,6 @@ export function TaskCard({ isSelected, onSelect, onStatusChange, task }: TaskCar
       <div style={metaStyle}>
         <span>{task.owner}</span>
       </div>
-    </button>
+    </div>
   )
 }
