@@ -85,6 +85,7 @@ export const columnHeaderStyle: CSSProperties = {
   alignItems: 'center',
   justifyContent: 'space-between',
   gap: '12px',
+  boxSizing: 'border-box',
   padding: '12px 14px',
   borderRadius: '16px',
   borderWidth: '1px',

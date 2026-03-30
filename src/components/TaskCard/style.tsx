@@ -2,6 +2,7 @@ import type { CSSProperties } from 'react'
 
 export const cardBaseStyle: CSSProperties = {
   width: '100%',
+  boxSizing: 'border-box',
   borderWidth: '1px',
   borderStyle: 'solid',
   borderColor: '#dce4ef',
