@@ -66,7 +66,7 @@ export const fieldLabelStyle: CSSProperties = {
 export const inputStyle: CSSProperties = {
   width: '100%',
   minHeight: '42px',
-  padding: '10px 12px',
+  padding: '10px 44px 10px 12px',
   boxSizing: 'border-box',
   borderWidth: '1px',
   borderStyle: 'solid',
@@ -75,6 +75,18 @@ export const inputStyle: CSSProperties = {
   background: '#ffffff',
   color: '#14213d',
   font: 'inherit',
+}
+
+export const selectStyle: CSSProperties = {
+  ...inputStyle,
+  appearance: 'none',
+  WebkitAppearance: 'none',
+  MozAppearance: 'none',
+  backgroundImage:
+    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 7.5L10 12.5L15 7.5' stroke='%2314213d' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'right 14px center',
+  backgroundSize: '20px 20px',
 }
 
 export const actionsRowStyle: CSSProperties = {

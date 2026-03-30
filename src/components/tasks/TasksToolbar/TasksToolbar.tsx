@@ -12,6 +12,7 @@ import {
   primaryButtonStyle,
   resetButtonStyle,
   searchFieldGroupStyle,
+  selectStyle,
   sortFieldGroupStyle,
   summaryStyle,
   titleStyle,
@@ -59,7 +60,7 @@ export function TasksToolbar({ onCreateTask }: TasksToolbarProps) {
               onChange={(event) =>
                 setFilters({ status: event.target.value as TaskStatus | 'all' })
               }
-              style={inputStyle}
+              style={selectStyle}
               value={filters.status}
             >
               <option value="all">All statuses</option>
@@ -73,7 +74,7 @@ export function TasksToolbar({ onCreateTask }: TasksToolbarProps) {
             <span style={fieldLabelStyle}>Owner</span>
             <select
               onChange={(event) => setFilters({ owner: event.target.value })}
-              style={inputStyle}
+              style={selectStyle}
               value={filters.owner}
             >
               {ownerOptions.map((owner) => (
@@ -95,7 +96,7 @@ export function TasksToolbar({ onCreateTask }: TasksToolbarProps) {
 
                 setSort({ field, direction })
               }}
-              style={inputStyle}
+              style={selectStyle}
               value={`${sort.field}:${sort.direction}`}
             >
               <option value="dueDate:asc">Due date, oldest first</option>
