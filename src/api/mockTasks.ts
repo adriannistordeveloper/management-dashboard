@@ -3,9 +3,8 @@ import type { Task } from '../types/task.types'
 export const mockTasks: Task[] = [
   {
     id: 'task-001',
-    title: 'Prepare onboarding flow audit',
-    description:
-      'Review the current onboarding journey, list UX friction points, and prepare a concise summary for the product review.',
+    title: 'Finish dashboard',
+    description: 'Wrap up the remaining UI details.',
     status: 'in_progress',
     owner: 'Adrian Nistor',
     dueDate: '2026-04-02',
@@ -14,9 +13,8 @@ export const mockTasks: Task[] = [
   },
   {
     id: 'task-002',
-    title: 'Update dashboard information architecture',
-    description:
-      'Propose a cleaner grouping for the management dashboard navigation and align the section labels with business terminology.',
+    title: 'Centralise types',
+    description: 'Move shared types into one place.',
     status: 'todo',
     owner: 'Ioana Popescu',
     dueDate: '2026-04-05',
@@ -26,8 +24,7 @@ export const mockTasks: Task[] = [
   {
     id: 'task-003',
     title: 'Finalize analytics event mapping',
-    description:
-      'Map the core task-management interactions to analytics events and flag any missing event properties before implementation.',
+    description: 'Finish the event map for the main task actions.',
     status: 'done',
     owner: 'Mihai Georgescu',
     dueDate: '2026-03-28',
