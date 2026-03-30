@@ -20,3 +20,9 @@ body {
   min-height: 100vh;
   background: #ffffff;
 }
+
+input::placeholder,
+textarea::placeholder {
+  color: #14213d;
+  opacity: 1;
+}
