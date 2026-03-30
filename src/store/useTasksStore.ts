@@ -34,10 +34,12 @@ export const useTasksStore = create<TasksStoreState>()(
 
         try {
           const tasks = await tasksRepository.getTasks()
+          const defaultSelectedTaskId =
+            tasks.find((task) => task.status === 'todo')?.id ?? tasks[0]?.id ?? null
           const selectedTaskId =
             get().selectedTaskId && tasks.some((task) => task.id === get().selectedTaskId)
               ? get().selectedTaskId
-              : tasks[0]?.id ?? null
+              : defaultSelectedTaskId
 
           set({
             tasks,
