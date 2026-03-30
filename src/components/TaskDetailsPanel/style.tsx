@@ -22,11 +22,13 @@ export const headerStyle: CSSProperties = {
 
 export const headingStyle: CSSProperties = {
   margin: 0,
+  fontSize: '18px',
+  color: '#14213d',
 }
 
 export const stackStyle: CSSProperties = {
   display: 'grid',
-  gap: '24px',
+  gap: '20px',
 }
 
 export const actionsStyle: CSSProperties = {
@@ -46,6 +48,26 @@ export const eyebrowStyle: CSSProperties = {
 
 export const titleStyle: CSSProperties = {
   margin: 0,
+  fontSize: '28px',
+  lineHeight: 1.1,
+  color: '#14213d',
+}
+
+export const summaryGridStyle: CSSProperties = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))',
+  gap: '12px',
+}
+
+export const summaryItemStyle: CSSProperties = {
+  display: 'grid',
+  gap: '6px',
+  padding: '14px 16px',
+  borderRadius: '16px',
+  background: '#f8faff',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#d9e2f1',
 }
 
 export const gridStyle: CSSProperties = {
@@ -57,21 +79,41 @@ export const gridStyle: CSSProperties = {
 export const metaItemStyle: CSSProperties = {
   display: 'grid',
   gap: '8px',
+  padding: '14px 16px',
+  borderRadius: '16px',
+  background: '#fbfcfe',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#e2e8f0',
 }
 
 export const labelStyle: CSSProperties = {
   fontSize: '13px',
+  fontWeight: 600,
   color: '#5c6b84',
+}
+
+export const summaryValueStyle: CSSProperties = {
+  color: '#14213d',
+  fontSize: '15px',
+  lineHeight: 1.4,
 }
 
 export const descriptionBlockStyle: CSSProperties = {
   display: 'grid',
   gap: '8px',
+  padding: '16px',
+  borderRadius: '16px',
+  background: '#fbfcfe',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#e2e8f0',
 }
 
 export const descriptionStyle: CSSProperties = {
   margin: 0,
   color: '#4c5a73',
+  lineHeight: 1.6,
 }
 
 export const secondaryButtonStyle: CSSProperties = {

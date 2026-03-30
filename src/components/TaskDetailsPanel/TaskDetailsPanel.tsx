@@ -15,6 +15,9 @@ import {
   gridStyle,
   headerStyle,
   headingStyle,
+  summaryGridStyle,
+  summaryItemStyle,
+  summaryValueStyle,
   labelStyle,
   metaItemStyle,
   panelStyle,
@@ -67,6 +70,17 @@ export function TaskDetailsPanel({
           <h3 style={titleStyle}>{selectedTask.title}</h3>
         </div>
 
+        <div style={summaryGridStyle}>
+          <div style={summaryItemStyle}>
+            <span style={labelStyle}>Owner</span>
+            <strong style={summaryValueStyle}>{selectedTask.owner}</strong>
+          </div>
+          <div style={summaryItemStyle}>
+            <span style={labelStyle}>Due date</span>
+            <strong style={summaryValueStyle}>{formatDate(selectedTask.dueDate)}</strong>
+          </div>
+        </div>
+
         <div style={gridStyle}>
           <div style={metaItemStyle}>
             <span style={labelStyle}>Status</span>
@@ -74,15 +88,15 @@ export function TaskDetailsPanel({
           </div>
           <div style={metaItemStyle}>
             <span style={labelStyle}>Owner</span>
-            <strong>{selectedTask.owner}</strong>
+            <strong style={summaryValueStyle}>{selectedTask.owner}</strong>
           </div>
           <div style={metaItemStyle}>
             <span style={labelStyle}>Due date</span>
-            <strong>{formatDate(selectedTask.dueDate)}</strong>
+            <strong style={summaryValueStyle}>{formatDate(selectedTask.dueDate)}</strong>
           </div>
           <div style={metaItemStyle}>
             <span style={labelStyle}>Created at</span>
-            <strong>{formatDate(selectedTask.createdAt)}</strong>
+            <strong style={summaryValueStyle}>{formatDate(selectedTask.createdAt)}</strong>
           </div>
         </div>
 
