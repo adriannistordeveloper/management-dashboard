@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useSelectedTask } from '../../../hooks/useSelectedTask'
 import { useTasksStore } from '../../../store/useTasksStore'
 import type { Task, TaskFormValues } from '../../../types/task.types'
+import { DeleteTaskConfirmation } from '../DeleteTaskConfirmation/DeleteTaskConfirmation'
 import { TaskForm } from '../TaskForm/TaskForm'
 import { TaskModal } from '../TaskModal/TaskModal'
 import { TaskDetailsPanel } from '../TaskDetailsPanel/TaskDetailsPanel'
@@ -29,6 +30,8 @@ export function TasksDashboard() {
   const error = useTasksStore((state) => state.error)
   const selectedTask = useSelectedTask()
   const [modalMode, setModalMode] = useState<'create' | 'edit' | null>(null)
+  const [taskPendingDelete, setTaskPendingDelete] = useState<Task | null>(null)
+  const [isDeletingTask, setIsDeletingTask] = useState(false)
 
   useEffect(() => {
     if (!hasHydrated) {
@@ -62,13 +65,7 @@ export function TasksDashboard() {
     : defaultFormValues
 
   const handleDeleteTask = async (task: Task) => {
-    const shouldDelete = window.confirm(`Delete "${task.title}"?`)
-
-    if (!shouldDelete) {
-      return
-    }
-
-    await deleteTask(task.id)
+    setTaskPendingDelete(task)
   }
 
   return (
@@ -120,6 +117,34 @@ export function TasksDashboard() {
               setModalMode(null)
             }}
             submitLabel={modalMode === 'create' ? 'Create task' : 'Save changes'}
+          />
+        </TaskModal>
+      ) : null}
+
+      {taskPendingDelete ? (
+        <TaskModal
+          onClose={() => {
+            if (!isDeletingTask) {
+              setTaskPendingDelete(null)
+            }
+          }}
+          subtitle="Please confirm this destructive action."
+          title="Delete task"
+        >
+          <DeleteTaskConfirmation
+            isDeleting={isDeletingTask}
+            onCancel={() => setTaskPendingDelete(null)}
+            onConfirm={async () => {
+              setIsDeletingTask(true)
+
+              try {
+                await deleteTask(taskPendingDelete.id)
+                setTaskPendingDelete(null)
+              } finally {
+                setIsDeletingTask(false)
+              }
+            }}
+            task={taskPendingDelete}
           />
         </TaskModal>
       ) : null}
