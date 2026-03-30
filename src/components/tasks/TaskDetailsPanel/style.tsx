@@ -9,6 +9,9 @@ export const panelStyle: CSSProperties = {
   borderRadius: '20px',
   padding: '24px',
   boxShadow: '0 18px 40px rgba(15, 23, 42, 0.06)',
+  position: 'sticky',
+  top: '24px',
+  alignSelf: 'start',
 }
 
 export const headerStyle: CSSProperties = {
