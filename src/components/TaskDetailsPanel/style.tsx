@@ -99,18 +99,6 @@ export const summaryValueStyle: CSSProperties = {
   lineHeight: 1.4,
 }
 
-export const priorityBadgeStyle: CSSProperties = {
-  display: 'inline-flex',
-  alignItems: 'center',
-  minHeight: '28px',
-  padding: '4px 10px',
-  borderRadius: '999px',
-  background: '#e8f0ff',
-  color: '#23408e',
-  fontSize: '13px',
-  fontWeight: 700,
-}
-
 export const descriptionBlockStyle: CSSProperties = {
   display: 'grid',
   gap: '8px',

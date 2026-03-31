@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 
-import type { TaskStatus } from '@/types/task.types'
+import type { TaskPriority, TaskStatus } from '@/types/task.types'
 
 export const containerStyle: CSSProperties = {
   position: 'relative',
@@ -71,4 +71,24 @@ const statusStyles: Record<TaskStatus, CSSProperties> = {
 export const getTriggerStyle = (status: TaskStatus): CSSProperties => ({
   ...triggerBaseStyle,
   ...statusStyles[status],
+})
+
+const priorityStyles: Record<TaskPriority, CSSProperties> = {
+  low: {
+    background: '#eef2f7',
+    color: '#475467',
+  },
+  medium: {
+    background: '#fff3d8',
+    color: '#9b5c00',
+  },
+  high: {
+    background: '#dce8ff',
+    color: '#1c4ed8',
+  },
+}
+
+export const getPriorityTriggerStyle = (priority: TaskPriority): CSSProperties => ({
+  ...triggerBaseStyle,
+  ...priorityStyles[priority],
 })

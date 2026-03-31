@@ -4,6 +4,7 @@ import type {
   Task,
   TaskFilters,
   TaskFormValues,
+  TaskPriority,
   TaskSort,
   TaskStatus,
   TasksViewMode,
@@ -14,6 +15,7 @@ export type ToastTone = 'success' | 'error' | 'destructive'
 export type ModalMode = 'create' | 'edit' | null
 
 export type TaskStatusChangeHandler = (task: Task) => (status: TaskStatus) => void
+export type TaskPriorityChangeHandler = (task: Task) => (priority: TaskPriority) => void
 
 export interface ViewModeToggleProps {
   onChange: (mode: TasksViewMode) => void
@@ -34,6 +36,11 @@ export interface DeleteTaskConfirmationProps {
 export interface StatusMenuProps {
   onChange: (status: TaskStatus) => void
   status: TaskStatus
+}
+
+export interface PriorityMenuProps {
+  onChange: (priority: TaskPriority) => void
+  priority: TaskPriority
 }
 
 export interface TasksErrorStateProps {
@@ -73,6 +80,7 @@ export interface TaskCardProps {
 export interface TaskDetailsPanelProps {
   onDeleteTask: (task: Task) => void
   onEditTask: (task: Task) => void
+  onPriorityChange: TaskPriorityChangeHandler
   onStatusChange: TaskStatusChangeHandler
 }
 

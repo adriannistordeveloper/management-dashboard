@@ -1,11 +1,11 @@
 import { formatDate } from '@/lib/formatDate'
-import { formatTaskPriority } from '@/lib/formatTaskPriority'
 import { useVisibleTasks } from '@/hooks/useVisibleTasks'
 import { useSelectedTask } from '@/hooks/useSelectedTask'
 import { useTasksStore } from '@/store/useTasksStore'
 import type { TaskDetailsPanelProps } from '@/types/task-ui.types'
 import { HiddenSelectionState } from '@/components/HiddenSelectionState/HiddenSelectionState'
 import { NoSelectionState } from '@/components/NoSelectionState/NoSelectionState'
+import { PriorityMenu } from '@/components/PriorityMenu/PriorityMenu'
 import { StatusMenu } from '@/components/StatusMenu/StatusMenu'
 import {
   actionsStyle,
@@ -22,7 +22,6 @@ import {
   labelStyle,
   metaItemStyle,
   panelStyle,
-  priorityBadgeStyle,
   secondaryButtonStyle,
   stackStyle,
   titleStyle,
@@ -31,6 +30,7 @@ import {
 export function TaskDetailsPanel({
   onDeleteTask,
   onEditTask,
+  onPriorityChange,
   onStatusChange,
 }: TaskDetailsPanelProps) {
   const visibleTasks = useVisibleTasks()
@@ -81,10 +81,6 @@ export function TaskDetailsPanel({
             <span style={labelStyle}>Due date</span>
             <strong style={summaryValueStyle}>{formatDate(selectedTask.dueDate)}</strong>
           </div>
-          <div style={summaryItemStyle}>
-            <span style={labelStyle}>Priority</span>
-            <span style={priorityBadgeStyle}>{formatTaskPriority(selectedTask.priority)}</span>
-          </div>
         </div>
 
         <div style={gridStyle}>
@@ -94,7 +90,10 @@ export function TaskDetailsPanel({
           </div>
           <div style={metaItemStyle}>
             <span style={labelStyle}>Priority</span>
-            <span style={priorityBadgeStyle}>{formatTaskPriority(selectedTask.priority)}</span>
+            <PriorityMenu
+              onChange={onPriorityChange(selectedTask)}
+              priority={selectedTask.priority}
+            />
           </div>
           <div style={metaItemStyle}>
             <span style={labelStyle}>Owner</span>

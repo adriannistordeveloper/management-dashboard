@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useSelectedTask } from '@/hooks/useSelectedTask'
 import { useTaskToasts } from '@/hooks/useTaskToasts'
 import { useTasksStore } from '@/store/useTasksStore'
-import type { Task, TaskFormValues, TaskStatus } from '@/types/task.types'
+import type { Task, TaskFormValues, TaskPriority, TaskStatus } from '@/types/task.types'
 import type { ModalMode } from '@/types/task-ui.types'
 import { DeleteAllConfirmation } from '@/components/DeleteAllConfirmation/DeleteAllConfirmation'
 import { DeleteTaskConfirmation } from '@/components/DeleteTaskConfirmation/DeleteTaskConfirmation'
@@ -123,6 +123,35 @@ export function TasksDashboard() {
     }
   }
 
+  const handlePriorityChange = (task: Task) => async (priority: TaskPriority) => {
+    if (task.priority === priority) {
+      return
+    }
+
+    try {
+      await updateTask(task.id, {
+        title: task.title,
+        description: task.description,
+        status: task.status,
+        priority,
+        owner: task.owner,
+        dueDate: task.dueDate,
+      })
+
+      pushToast({
+        title: 'Priority updated',
+        message: `"${task.title}" priority is now ${priority}.`,
+        tone: 'success',
+      })
+    } catch {
+      pushToast({
+        title: 'Priority update failed',
+        message: 'We could not update the task priority right now.',
+        tone: 'error',
+      })
+    }
+  }
+
   return (
     <main style={dashboardShellStyle}>
       <TasksToolbar
@@ -161,6 +190,7 @@ export function TasksDashboard() {
           <TaskDetailsPanel
             onDeleteTask={(task) => void handleDeleteTask(task)}
             onEditTask={() => setModalMode('edit')}
+            onPriorityChange={handlePriorityChange}
             onStatusChange={handleStatusChange}
           />
           </section>
