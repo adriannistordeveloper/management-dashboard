@@ -60,6 +60,7 @@ export function TasksDashboard() {
       title: '',
       description: '',
       status: 'todo',
+      priority: 'medium',
       owner: '',
       dueDate: new Date().toISOString().slice(0, 10),
     }),
@@ -71,6 +72,7 @@ export function TasksDashboard() {
         title: selectedTask.title,
         description: selectedTask.description,
         status: selectedTask.status,
+        priority: selectedTask.priority,
         owner: selectedTask.owner,
         dueDate: selectedTask.dueDate,
       }
@@ -102,6 +104,7 @@ export function TasksDashboard() {
         title: task.title,
         description: task.description,
         status,
+        priority: task.priority,
         owner: task.owner,
         dueDate: task.dueDate,
       })

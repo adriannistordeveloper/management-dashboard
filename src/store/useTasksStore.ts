@@ -8,6 +8,7 @@ import type { TasksStoreState } from '@/types/task-ui.types'
 const initialFilters: TaskFilters = {
   search: '',
   status: 'all',
+  priority: 'all',
   owner: 'all',
 }
 

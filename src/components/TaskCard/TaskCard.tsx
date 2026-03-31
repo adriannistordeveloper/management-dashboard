@@ -1,4 +1,5 @@
 import { formatDate } from '@/lib/formatDate'
+import { formatTaskPriority } from '@/lib/formatTaskPriority'
 import type { TaskCardProps } from '@/types/task-ui.types'
 import { StatusMenu } from '@/components/StatusMenu/StatusMenu'
 import {
@@ -7,9 +8,11 @@ import {
   dateStyle,
   descriptionStyle,
   metaStyle,
+  priorityBadgeStyle,
   sourceBadgeStyle,
   titleStyle,
   titleRowStyle,
+  topMetaStyle,
   topRowStyle,
 } from '@/components/TaskCard/style'
 
@@ -29,7 +32,10 @@ export function TaskCard({ isSelected, onSelect, onStatusChange, task }: TaskCar
       tabIndex={0}
     >
       <div style={topRowStyle}>
-        <StatusMenu onChange={onStatusChange(task)} status={task.status} />
+        <div style={topMetaStyle}>
+          <StatusMenu onChange={onStatusChange(task)} status={task.status} />
+          <span style={priorityBadgeStyle}>{formatTaskPriority(task.priority)}</span>
+        </div>
         <span style={dateStyle}>{formatDate(task.dueDate)}</span>
       </div>
       <div style={titleRowStyle}>

@@ -13,6 +13,7 @@ export const filterTasks = (tasks: Task[], filters: TaskFilters): Task[] => {
         task.description,
         task.owner,
         task.status,
+        task.priority,
         task.dueDate,
         task.createdAt,
       ]
@@ -20,8 +21,9 @@ export const filterTasks = (tasks: Task[], filters: TaskFilters): Task[] => {
         .some((value) => value.includes(searchQuery))
 
     const matchesStatus = filters.status === 'all' || task.status === filters.status
+    const matchesPriority = filters.priority === 'all' || task.priority === filters.priority
     const matchesOwner = filters.owner === 'all' || task.owner === filters.owner
 
-    return matchesSearch && matchesStatus && matchesOwner
+    return matchesSearch && matchesStatus && matchesPriority && matchesOwner
   })
 }

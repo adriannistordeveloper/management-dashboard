@@ -9,6 +9,7 @@ const tasks: Task[] = [
     title: 'Finish dashboard',
     description: 'Wrap up the remaining UI details.',
     status: 'in_progress',
+    priority: 'medium',
     owner: 'Adrian Nistor',
     dueDate: '2026-04-02',
     createdAt: '2026-03-24',
@@ -19,6 +20,7 @@ const tasks: Task[] = [
     title: 'Centralise types',
     description: 'Move shared types into one place.',
     status: 'todo',
+    priority: 'high',
     owner: 'Ioana Popescu',
     dueDate: '2026-04-05',
     createdAt: '2026-03-26',
@@ -29,6 +31,7 @@ const tasks: Task[] = [
     title: 'Finalize analytics event mapping',
     description: 'Finish the event map for the main task actions.',
     status: 'done',
+    priority: 'low',
     owner: 'Mihai Georgescu',
     dueDate: '2026-03-28',
     createdAt: '2026-03-20',
@@ -56,6 +59,16 @@ describe('sortTasks', () => {
       'Finish dashboard',
       'Finalize analytics event mapping',
       'Centralise types',
+    ])
+  })
+
+  it('sorts by priority descending', () => {
+    const sort: TaskSort = { field: 'priority', direction: 'desc' }
+
+    expect(getTitles(sortTasks(tasks, sort))).toEqual([
+      'Centralise types',
+      'Finish dashboard',
+      'Finalize analytics event mapping',
     ])
   })
 

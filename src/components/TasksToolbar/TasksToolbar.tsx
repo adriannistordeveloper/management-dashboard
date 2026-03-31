@@ -1,6 +1,7 @@
 import { useVisibleTasks } from '@/hooks/useVisibleTasks'
+import { formatTaskPriority } from '@/lib/formatTaskPriority'
 import { useTasksStore } from '@/store/useTasksStore'
-import type { TaskSortField, TaskStatus } from '@/types/task.types'
+import type { TaskPriority, TaskSortField, TaskStatus } from '@/types/task.types'
 import type { TasksToolbarProps } from '@/types/task-ui.types'
 import {
   actionsRowStyle,
@@ -51,7 +52,7 @@ export function TasksToolbar({ onCreateTask, onResetStorage }: TasksToolbarProps
             <span style={fieldLabelStyle}>Search</span>
             <input
               onChange={(event) => setFilters({ search: event.target.value })}
-              placeholder="Search title, status, date or owner"
+              placeholder="Search title, status, priority, date or owner"
               style={inputStyle}
               type="text"
               value={filters.search}
@@ -71,6 +72,22 @@ export function TasksToolbar({ onCreateTask, onResetStorage }: TasksToolbarProps
               <option value="todo">To do</option>
               <option value="in_progress">In progress</option>
               <option value="done">Done</option>
+            </select>
+          </label>
+
+          <label style={fieldGroupStyle}>
+            <span style={fieldLabelStyle}>Priority</span>
+            <select
+              onChange={(event) =>
+                setFilters({ priority: event.target.value as TaskPriority | 'all' })
+              }
+              style={selectStyle}
+              value={filters.priority}
+            >
+              <option value="all">All priorities</option>
+              <option value="high">{formatTaskPriority('high')}</option>
+              <option value="medium">{formatTaskPriority('medium')}</option>
+              <option value="low">{formatTaskPriority('low')}</option>
             </select>
           </label>
 
@@ -107,6 +124,8 @@ export function TasksToolbar({ onCreateTask, onResetStorage }: TasksToolbarProps
               <option value="dueDate:desc">Due date, newest first</option>
               <option value="title:asc">Title, A-Z</option>
               <option value="title:desc">Title, Z-A</option>
+              <option value="priority:desc">Priority, high to low</option>
+              <option value="priority:asc">Priority, low to high</option>
               <option value="createdAt:desc">Created, newest first</option>
               <option value="createdAt:asc">Created, oldest first</option>
             </select>

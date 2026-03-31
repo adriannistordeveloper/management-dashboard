@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-import type { TaskFormValues, TaskStatus } from '@/types/task.types'
+import { formatTaskPriority } from '@/lib/formatTaskPriority'
+import type { TaskFormValues, TaskPriority, TaskStatus } from '@/types/task.types'
 import type { TaskFormProps } from '@/types/task-ui.types'
 import {
   actionsStyle,
@@ -85,6 +86,19 @@ export function TaskForm({ initialValues, onCancel, onSubmit, submitLabel }: Tas
             <option value="todo">To do</option>
             <option value="in_progress">In progress</option>
             <option value="done">Done</option>
+          </select>
+        </label>
+
+        <label style={fieldStyle}>
+          <span style={labelStyle}>Priority</span>
+          <select
+            onChange={(event) => updateField('priority', event.target.value as TaskPriority)}
+            style={inputStyle}
+            value={values.priority}
+          >
+            <option value="low">{formatTaskPriority('low')}</option>
+            <option value="medium">{formatTaskPriority('medium')}</option>
+            <option value="high">{formatTaskPriority('high')}</option>
           </select>
         </label>
 

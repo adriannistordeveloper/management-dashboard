@@ -1,4 +1,5 @@
 import { formatDate } from '@/lib/formatDate'
+import { formatTaskPriority } from '@/lib/formatTaskPriority'
 import { useVisibleTasks } from '@/hooks/useVisibleTasks'
 import { useSelectedTask } from '@/hooks/useSelectedTask'
 import { useTasksStore } from '@/store/useTasksStore'
@@ -21,6 +22,7 @@ import {
   labelStyle,
   metaItemStyle,
   panelStyle,
+  priorityBadgeStyle,
   secondaryButtonStyle,
   stackStyle,
   titleStyle,
@@ -79,12 +81,20 @@ export function TaskDetailsPanel({
             <span style={labelStyle}>Due date</span>
             <strong style={summaryValueStyle}>{formatDate(selectedTask.dueDate)}</strong>
           </div>
+          <div style={summaryItemStyle}>
+            <span style={labelStyle}>Priority</span>
+            <span style={priorityBadgeStyle}>{formatTaskPriority(selectedTask.priority)}</span>
+          </div>
         </div>
 
         <div style={gridStyle}>
           <div style={metaItemStyle}>
             <span style={labelStyle}>Status</span>
             <StatusMenu onChange={onStatusChange(selectedTask)} status={selectedTask.status} />
+          </div>
+          <div style={metaItemStyle}>
+            <span style={labelStyle}>Priority</span>
+            <span style={priorityBadgeStyle}>{formatTaskPriority(selectedTask.priority)}</span>
           </div>
           <div style={metaItemStyle}>
             <span style={labelStyle}>Owner</span>

@@ -25,6 +25,13 @@ export const topRowStyle: CSSProperties = {
   gap: '12px',
 }
 
+export const topMetaStyle: CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '8px',
+  flexWrap: 'wrap',
+}
+
 export const titleStyle: CSSProperties = {
   margin: '14px 0 10px',
   fontSize: '18px',
@@ -69,4 +76,10 @@ export const sourceBadgeStyle: CSSProperties = {
   fontSize: '12px',
   fontWeight: 700,
   whiteSpace: 'nowrap',
+}
+
+export const priorityBadgeStyle: CSSProperties = {
+  ...sourceBadgeStyle,
+  background: '#e8f0ff',
+  color: '#23408e',
 }
