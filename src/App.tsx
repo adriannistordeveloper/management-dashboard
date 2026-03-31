@@ -1,4 +1,4 @@
-import { TasksDashboard } from './components/TasksDashboard/TasksDashboard'
+import { TasksDashboard } from '@/components/TasksDashboard/TasksDashboard'
 
 function App() {
   return <TasksDashboard />

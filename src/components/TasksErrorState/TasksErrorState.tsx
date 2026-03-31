@@ -1,5 +1,5 @@
-import type { TasksErrorStateProps } from '../../types/task-ui.types'
-import { buttonStyle, containerStyle, copyStyle, titleStyle } from './style'
+import type { TasksErrorStateProps } from '@/types/task-ui.types'
+import { buttonStyle, containerStyle, copyStyle, titleStyle } from '@/components/TasksErrorState/style'
 
 export function TasksErrorState({ message, onRetry }: TasksErrorStateProps) {
   return (

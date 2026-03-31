@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import type { ToastMessage, ToastTone } from '../types/task-ui.types'
+import type { ToastMessage, ToastTone } from '@/types/task-ui.types'
 
 export const useTaskToasts = () => {
   const [toasts, setToasts] = useState<ToastMessage[]>([])

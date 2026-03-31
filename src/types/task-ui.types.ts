@@ -7,7 +7,7 @@ import type {
   TaskSort,
   TaskStatus,
   TasksViewMode,
-} from './task.types'
+} from '@/types/task.types'
 
 export type ToastTone = 'success' | 'error' | 'destructive'
 

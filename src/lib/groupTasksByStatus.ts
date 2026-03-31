@@ -1,4 +1,4 @@
-import type { Task, TaskStatus } from '../types/task.types'
+import type { Task, TaskStatus } from '@/types/task.types'
 
 const statusOrder: TaskStatus[] = ['todo', 'in_progress', 'done']
 

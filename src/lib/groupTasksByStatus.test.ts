@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
-import { groupTasksByStatus } from './groupTasksByStatus'
-import type { Task } from '../types/task.types'
+import { groupTasksByStatus } from '@/lib/groupTasksByStatus'
+import type { Task } from '@/types/task.types'
 
 const tasks: Task[] = [
   {

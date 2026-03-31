@@ -1,4 +1,4 @@
-import type { Task, TaskSort } from '../types/task.types'
+import type { Task, TaskSort } from '@/types/task.types'
 
 const compareValues = (left: string, right: string) => left.localeCompare(right)
 

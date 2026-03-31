@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
-import { sortTasks } from './sortTasks'
-import type { Task, TaskSort } from '../types/task.types'
+import { sortTasks } from '@/lib/sortTasks'
+import type { Task, TaskSort } from '@/types/task.types'
 
 const tasks: Task[] = [
   {

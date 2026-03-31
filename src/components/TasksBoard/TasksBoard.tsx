@@ -1,13 +1,13 @@
 import { useState } from 'react'
 
-import { formatTaskStatus } from '../../lib/formatTaskStatus'
-import { groupTasksByStatus } from '../../lib/groupTasksByStatus'
-import { useVisibleTasks } from '../../hooks/useVisibleTasks'
-import { useTasksStore } from '../../store/useTasksStore'
-import type { TaskStatus } from '../../types/task.types'
-import type { TasksBoardProps } from '../../types/task-ui.types'
-import { EmptyResultsState } from '../EmptyResultsState/EmptyResultsState'
-import { TaskCard } from '../TaskCard/TaskCard'
+import { formatTaskStatus } from '@/lib/formatTaskStatus'
+import { groupTasksByStatus } from '@/lib/groupTasksByStatus'
+import { useVisibleTasks } from '@/hooks/useVisibleTasks'
+import { useTasksStore } from '@/store/useTasksStore'
+import type { TaskStatus } from '@/types/task.types'
+import type { TasksBoardProps } from '@/types/task-ui.types'
+import { EmptyResultsState } from '@/components/EmptyResultsState/EmptyResultsState'
+import { TaskCard } from '@/components/TaskCard/TaskCard'
 import {
   boardGridStyle,
   collapseIconStyle,
@@ -24,7 +24,7 @@ import {
   titleStyle,
   columnTitleStyle,
   toggleAllButtonStyle,
-} from './style'
+} from '@/components/TasksBoard/style'
 
 const initialCollapsedSections: Record<TaskStatus, boolean> = {
   todo: false,

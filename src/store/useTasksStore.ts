@@ -1,9 +1,9 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
-import { tasksRepository } from '../api/tasksRepository'
-import type { TaskFilters, TaskSort } from '../types/task.types'
-import type { TasksStoreState } from '../types/task-ui.types'
+import { tasksRepository } from '@/api/tasksRepository'
+import type { TaskFilters, TaskSort } from '@/types/task.types'
+import type { TasksStoreState } from '@/types/task-ui.types'
 
 const initialFilters: TaskFilters = {
   search: '',

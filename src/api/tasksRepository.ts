@@ -1,5 +1,5 @@
-import { mockTasks } from './mockTasks'
-import type { Task, TaskFormValues } from '../types/task.types'
+import { mockTasks } from '@/api/mockTasks'
+import type { Task, TaskFormValues } from '@/types/task.types'
 
 const REPOSITORY_DELAY_MS = 400
 

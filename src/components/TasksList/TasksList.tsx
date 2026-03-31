@@ -1,13 +1,13 @@
 import { useState } from 'react'
 
-import { formatTaskStatus } from '../../lib/formatTaskStatus'
-import { groupTasksByStatus } from '../../lib/groupTasksByStatus'
-import { useVisibleTasks } from '../../hooks/useVisibleTasks'
-import type { TaskStatus } from '../../types/task.types'
-import type { TasksListProps } from '../../types/task-ui.types'
-import { useTasksStore } from '../../store/useTasksStore'
-import { EmptyResultsState } from '../EmptyResultsState/EmptyResultsState'
-import { TaskCard } from '../TaskCard/TaskCard'
+import { formatTaskStatus } from '@/lib/formatTaskStatus'
+import { groupTasksByStatus } from '@/lib/groupTasksByStatus'
+import { useVisibleTasks } from '@/hooks/useVisibleTasks'
+import type { TaskStatus } from '@/types/task.types'
+import type { TasksListProps } from '@/types/task-ui.types'
+import { useTasksStore } from '@/store/useTasksStore'
+import { EmptyResultsState } from '@/components/EmptyResultsState/EmptyResultsState'
+import { TaskCard } from '@/components/TaskCard/TaskCard'
 import {
   collapseIconStyle,
   collapseIconSvgStyle,
@@ -28,7 +28,7 @@ import {
   statusTitleStyle,
   titleStyle,
   toggleAllButtonStyle,
-} from './style'
+} from '@/components/TasksList/style'
 
 const initialCollapsedSections: Record<TaskStatus, boolean> = {
   todo: false,

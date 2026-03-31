@@ -1,6 +1,6 @@
-import { formatDate } from '../../lib/formatDate'
-import type { TaskCardProps } from '../../types/task-ui.types'
-import { StatusMenu } from '../StatusMenu/StatusMenu'
+import { formatDate } from '@/lib/formatDate'
+import type { TaskCardProps } from '@/types/task-ui.types'
+import { StatusMenu } from '@/components/StatusMenu/StatusMenu'
 import {
   cardBaseStyle,
   cardSelectedStyle,
@@ -11,7 +11,7 @@ import {
   titleStyle,
   titleRowStyle,
   topRowStyle,
-} from './style'
+} from '@/components/TaskCard/style'
 
 export function TaskCard({ isSelected, onSelect, onStatusChange, task }: TaskCardProps) {
   return (

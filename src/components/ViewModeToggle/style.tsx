@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 
-import type { TasksViewMode } from '../../types/task.types'
+import type { TasksViewMode } from '@/types/task.types'
 
 export const containerStyle: CSSProperties = {
   display: 'flex',

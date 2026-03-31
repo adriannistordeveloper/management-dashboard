@@ -1,7 +1,7 @@
-import { useVisibleTasks } from '../../hooks/useVisibleTasks'
-import { useTasksStore } from '../../store/useTasksStore'
-import type { TaskSortField, TaskStatus } from '../../types/task.types'
-import type { TasksToolbarProps } from '../../types/task-ui.types'
+import { useVisibleTasks } from '@/hooks/useVisibleTasks'
+import { useTasksStore } from '@/store/useTasksStore'
+import type { TaskSortField, TaskStatus } from '@/types/task.types'
+import type { TasksToolbarProps } from '@/types/task-ui.types'
 import {
   actionsRowStyle,
   controlsCardStyle,
@@ -21,7 +21,7 @@ import {
   titleRowStyle,
   toolbarActionsStyle,
   toolbarStyle,
-} from './style'
+} from '@/components/TasksToolbar/style'
 
 export function TasksToolbar({ onCreateTask, onResetStorage }: TasksToolbarProps) {
   const tasks = useTasksStore((state) => state.tasks)

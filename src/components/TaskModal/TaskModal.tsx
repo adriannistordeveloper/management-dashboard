@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 
-import { useModalFocusTrap } from '../../hooks/useModalFocusTrap'
-import type { TaskModalProps } from '../../types/task-ui.types'
+import { useModalFocusTrap } from '@/hooks/useModalFocusTrap'
+import type { TaskModalProps } from '@/types/task-ui.types'
 import {
   closeButtonStyle,
   headerStyle,
@@ -9,7 +9,7 @@ import {
   overlayStyle,
   subtitleStyle,
   titleStyle,
-} from './style'
+} from '@/components/TaskModal/style'
 
 export function TaskModal({ children, onClose, subtitle, title }: TaskModalProps) {
   const modalRef = useRef<HTMLDivElement | null>(null)

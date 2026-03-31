@@ -1,4 +1,4 @@
-import type { TaskStatus } from '../types/task.types'
+import type { TaskStatus } from '@/types/task.types'
 
 const statusLabels: Record<TaskStatus, string> = {
   todo: 'To do',

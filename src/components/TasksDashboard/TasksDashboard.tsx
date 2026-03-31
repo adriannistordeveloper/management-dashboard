@@ -1,28 +1,28 @@
 import { useEffect, useMemo, useState } from 'react'
 
-import { useSelectedTask } from '../../hooks/useSelectedTask'
-import { useTaskToasts } from '../../hooks/useTaskToasts'
-import { useTasksStore } from '../../store/useTasksStore'
-import type { Task, TaskFormValues, TaskStatus } from '../../types/task.types'
-import type { ModalMode } from '../../types/task-ui.types'
-import { DeleteAllConfirmation } from '../DeleteAllConfirmation/DeleteAllConfirmation'
-import { DeleteTaskConfirmation } from '../DeleteTaskConfirmation/DeleteTaskConfirmation'
-import { TaskForm } from '../TaskForm/TaskForm'
-import { TaskModal } from '../TaskModal/TaskModal'
-import { TaskDetailsPanel } from '../TaskDetailsPanel/TaskDetailsPanel'
-import { TasksErrorState } from '../TasksErrorState/TasksErrorState'
-import { TasksBoard } from '../TasksBoard/TasksBoard'
-import { TasksList } from '../TasksList/TasksList'
-import { TasksLoadingState } from '../TasksLoadingState/TasksLoadingState'
-import { TasksToolbar } from '../TasksToolbar/TasksToolbar'
-import { ToastViewport } from '../ToastViewport/ToastViewport'
-import { ViewModeToggle } from '../ViewModeToggle/ViewModeToggle'
+import { useSelectedTask } from '@/hooks/useSelectedTask'
+import { useTaskToasts } from '@/hooks/useTaskToasts'
+import { useTasksStore } from '@/store/useTasksStore'
+import type { Task, TaskFormValues, TaskStatus } from '@/types/task.types'
+import type { ModalMode } from '@/types/task-ui.types'
+import { DeleteAllConfirmation } from '@/components/DeleteAllConfirmation/DeleteAllConfirmation'
+import { DeleteTaskConfirmation } from '@/components/DeleteTaskConfirmation/DeleteTaskConfirmation'
+import { TaskForm } from '@/components/TaskForm/TaskForm'
+import { TaskModal } from '@/components/TaskModal/TaskModal'
+import { TaskDetailsPanel } from '@/components/TaskDetailsPanel/TaskDetailsPanel'
+import { TasksErrorState } from '@/components/TasksErrorState/TasksErrorState'
+import { TasksBoard } from '@/components/TasksBoard/TasksBoard'
+import { TasksList } from '@/components/TasksList/TasksList'
+import { TasksLoadingState } from '@/components/TasksLoadingState/TasksLoadingState'
+import { TasksToolbar } from '@/components/TasksToolbar/TasksToolbar'
+import { ToastViewport } from '@/components/ToastViewport/ToastViewport'
+import { ViewModeToggle } from '@/components/ViewModeToggle/ViewModeToggle'
 import {
   dashboardGridStyle,
   dashboardShellStyle,
   panelStyle,
   singleColumnGridStyle,
-} from './style'
+} from '@/components/TasksDashboard/style'
 
 export function TasksDashboard() {
   const fetchTasks = useTasksStore((state) => state.fetchTasks)

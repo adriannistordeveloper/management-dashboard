@@ -1,4 +1,4 @@
-import { containerStyle, copyStyle, titleStyle } from './style'
+import { containerStyle, copyStyle, titleStyle } from '@/components/EmptyResultsState/style'
 
 export function EmptyResultsState() {
   return (

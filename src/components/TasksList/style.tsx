@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import type { TaskStatus } from '../../types/task.types'
+import type { TaskStatus } from '@/types/task.types'
 
 export const panelStyle: CSSProperties = {
   background: '#ffffff',

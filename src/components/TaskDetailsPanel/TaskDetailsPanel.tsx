@@ -1,11 +1,11 @@
-import { formatDate } from '../../lib/formatDate'
-import { useVisibleTasks } from '../../hooks/useVisibleTasks'
-import { useSelectedTask } from '../../hooks/useSelectedTask'
-import { useTasksStore } from '../../store/useTasksStore'
-import type { TaskDetailsPanelProps } from '../../types/task-ui.types'
-import { HiddenSelectionState } from '../HiddenSelectionState/HiddenSelectionState'
-import { NoSelectionState } from '../NoSelectionState/NoSelectionState'
-import { StatusMenu } from '../StatusMenu/StatusMenu'
+import { formatDate } from '@/lib/formatDate'
+import { useVisibleTasks } from '@/hooks/useVisibleTasks'
+import { useSelectedTask } from '@/hooks/useSelectedTask'
+import { useTasksStore } from '@/store/useTasksStore'
+import type { TaskDetailsPanelProps } from '@/types/task-ui.types'
+import { HiddenSelectionState } from '@/components/HiddenSelectionState/HiddenSelectionState'
+import { NoSelectionState } from '@/components/NoSelectionState/NoSelectionState'
+import { StatusMenu } from '@/components/StatusMenu/StatusMenu'
 import {
   actionsStyle,
   dangerButtonStyle,
@@ -24,7 +24,7 @@ import {
   secondaryButtonStyle,
   stackStyle,
   titleStyle,
-} from './style'
+} from '@/components/TaskDetailsPanel/style'
 
 export function TaskDetailsPanel({
   onDeleteTask,

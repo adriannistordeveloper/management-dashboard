@@ -1,4 +1,4 @@
-import type { Task, TaskFilters } from '../types/task.types'
+import type { Task, TaskFilters } from '@/types/task.types'
 
 const normalize = (value: string) => value.trim().toLowerCase()
 

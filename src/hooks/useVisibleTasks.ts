@@ -1,6 +1,6 @@
-import { filterTasks } from '../lib/filterTasks'
-import { sortTasks } from '../lib/sortTasks'
-import { useTasksStore } from '../store/useTasksStore'
+import { filterTasks } from '@/lib/filterTasks'
+import { sortTasks } from '@/lib/sortTasks'
+import { useTasksStore } from '@/store/useTasksStore'
 
 export const useVisibleTasks = () => {
   const tasks = useTasksStore((state) => state.tasks)

@@ -1,4 +1,4 @@
-import { useTasksStore } from '../store/useTasksStore'
+import { useTasksStore } from '@/store/useTasksStore'
 
 export const useSelectedTask = () => {
   const tasks = useTasksStore((state) => state.tasks)

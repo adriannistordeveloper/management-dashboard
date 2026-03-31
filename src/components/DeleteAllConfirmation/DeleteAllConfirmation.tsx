@@ -1,5 +1,5 @@
-import type { DeleteAllConfirmationProps } from '../../types/task-ui.types'
-import { actionsStyle, bodyTextStyle, contentStyle, dangerButtonStyle, secondaryButtonStyle } from './style'
+import type { DeleteAllConfirmationProps } from '@/types/task-ui.types'
+import { actionsStyle, bodyTextStyle, contentStyle, dangerButtonStyle, secondaryButtonStyle } from '@/components/DeleteAllConfirmation/style'
 
 export function DeleteAllConfirmation({
   count,

@@ -1,8 +1,8 @@
-import { formatTaskStatus } from '../../lib/formatTaskStatus'
-import { useDismissibleMenu } from '../../hooks/useDismissibleMenu'
-import type { TaskStatus } from '../../types/task.types'
-import type { StatusMenuProps } from '../../types/task-ui.types'
-import { chevronStyle, containerStyle, getTriggerStyle, menuItemStyle, menuStyle } from './style'
+import { formatTaskStatus } from '@/lib/formatTaskStatus'
+import { useDismissibleMenu } from '@/hooks/useDismissibleMenu'
+import type { TaskStatus } from '@/types/task.types'
+import type { StatusMenuProps } from '@/types/task-ui.types'
+import { chevronStyle, containerStyle, getTriggerStyle, menuItemStyle, menuStyle } from '@/components/StatusMenu/style'
 
 const statusOptions: TaskStatus[] = ['todo', 'in_progress', 'done']
 
